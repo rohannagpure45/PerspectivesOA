@@ -1,4 +1,5 @@
 """FastAPI app entrypoint."""
+
 from __future__ import annotations
 
 import logging
@@ -8,6 +9,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.api import extraction as extraction_api
+from app.api import intelligence as intelligence_api
 from app.api.schemas import HealthResponse
 from app.settings import get_settings
 from app.simplepractice import FixtureBackend, SimplePracticeBackend, SimplePracticeClient
@@ -48,8 +50,7 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title="PerspectivesOA",
         description=(
-            "Reverse-engineered SimplePractice extraction service "
-            "(Task 2). Task 3 intelligence endpoints to follow."
+            "Reverse-engineered SimplePractice extraction + ASAM 4th-edition / TJC CTS audit service."
         ),
         version="0.1.0",
         lifespan=lifespan,
@@ -60,6 +61,7 @@ def create_app() -> FastAPI:
         return HealthResponse(fixture_mode=settings.use_fixtures)
 
     app.include_router(extraction_api.router)
+    app.include_router(intelligence_api.router)
 
     return app
 

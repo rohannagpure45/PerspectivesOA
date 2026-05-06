@@ -1,0 +1,127 @@
+# Curated subset of The Joint Commission Care, Treatment & Services standards
+# for behavioral health (Comprehensive Accreditation Manual for Behavioral
+# Health Care). Standards and EP titles are paraphrased for engineering
+# clarity; check the published manual for the binding text.
+#
+# Each rule has:
+#   target          : which extracted artefact to inspect
+#                       admission_assessment, diagnoses, dtp, timeline, all
+#   evidence        : list of patterns that, when *all* match, yield "pass"
+#   any_of          : optional list of pattern groups; when ANY group matches, pass
+#   require_all     : optional list of structural booleans (used for DTP fields)
+#   failure_rationale_template : free text used when the rule fails
+#   citation        : reference to anchor the verdict to the source note id
+#
+# Verdicts:
+#   pass             : evidence found
+#   fail             : evidence required and not found
+#   insufficient_data: target document not present (e.g. no BPS at all)
+
+version: "tjc-cts-bh-curated-v1"
+framework: "TJC CTS — Behavioral Health"
+
+rules:
+  - standard: "CTS.02.01.01"
+    ep: "EP1"
+    title: "Comprehensive assessment completed within timeframe"
+    target: admission_assessment
+    evidence:
+      - r"date of assessment\s*:\s*[A-Za-z]+\s+\d{1,2},\s*\d{4}"
+    failure_rationale_template: >
+      The Admission Assessment lacks an explicit date-of-assessment line, so
+      timeliness against first contact cannot be verified.
+    pass_rationale_template: >
+      Admission Assessment is dated and precedes the first scheduled appointment.
+
+  - standard: "CTS.02.02.01"
+    ep: "EP2"
+    title: "Assessment includes spiritual/cultural orientation"
+    target: admission_assessment
+    evidence:
+      - r"spiritual"
+      - r"cultural|religion|faith"
+    failure_rationale_template: >
+      The Biopsychosocial intake omits any spiritual or cultural assessment
+      domain. The Joint Commission requires this orientation be documented.
+    pass_rationale_template: >
+      The intake addresses the patient's spiritual / cultural orientation.
+
+  - standard: "CTS.02.02.01"
+    ep: "EP4"
+    title: "Substance use history with quantity and frequency"
+    target: admission_assessment
+    evidence:
+      - r"(?i)substance use history"
+      - r"\d+\s*(?:to\s*\d+)?\s*(?:beers?|drinks?)\s*(?:daily|per day|a day|each day)"
+    failure_rationale_template: >
+      The intake does not document substance use quantity and frequency at the
+      level of detail required for an ASAM-aligned Substance Use History.
+    pass_rationale_template: >
+      Substance use history documents quantity, frequency, and pattern of use.
+
+  - standard: "CTS.03.01.01"
+    ep: "EP1"
+    title: "Treatment plan addresses identified problems"
+    target: diagnoses_and_dtp
+    require_all:
+      - "diagnoses_present"
+      - "dtp_present"
+    failure_rationale_template: >
+      Treatment plan or diagnosis record is missing — cannot confirm that the
+      plan addresses identified clinical problems.
+    pass_rationale_template: >
+      Active diagnoses are recorded and a Diagnosis & Treatment Plan is on file.
+
+  - standard: "CTS.03.01.03"
+    ep: "EP2"
+    title: "Treatment plan includes measurable goals"
+    target: dtp
+    require_all:
+      - "dtp_goal_nonempty"
+    failure_rationale_template: >
+      The Diagnosis Treatment Plan record has goal=null and formattedGoal=null,
+      so there is no measurable, documented treatment goal.
+    pass_rationale_template: >
+      Treatment plan includes a documented goal.
+
+  - standard: "CTS.04.03.01"
+    ep: "EP1"
+    title: "Suicide and homicide risk assessed"
+    target: admission_assessment
+    any_of:
+      - patterns:
+          - r"suicidal ideation"
+          - r"homicidal ideation"
+      - patterns:
+          - r"si/?hi"
+    failure_rationale_template: >
+      Initial Risk Screening does not document suicide/homicide ideation status.
+    pass_rationale_template: >
+      Initial Risk Screening explicitly addresses suicidal and homicidal ideation.
+
+  - standard: "CTS.04.03.05"
+    ep: "EP1"
+    title: "Lethal means inquiry (firearms / weapons)"
+    target: admission_assessment
+    any_of:
+      - patterns:
+          - r"firearm"
+      - patterns:
+          - r"weapons? in the home"
+    failure_rationale_template: >
+      Initial Risk Screening does not document a lethal-means inquiry (firearms
+      or other weapons in the home), which TJC CTS.04.03.05 requires.
+    pass_rationale_template: >
+      Lethal-means inquiry documented (firearms / weapons addressed in home).
+
+  - standard: "CTS.05.01.01"
+    ep: "EP3"
+    title: "Use of standardized outcomes measurement"
+    target: timeline_measures
+    require_all:
+      - "scored_measure_count_at_least_2"
+    failure_rationale_template: >
+      Fewer than two scored measures (e.g. GAD-7, PHQ-9) on file, so trended
+      outcomes measurement is not demonstrated.
+    pass_rationale_template: >
+      Two or more standardized scored measures are recorded across the timeline.
