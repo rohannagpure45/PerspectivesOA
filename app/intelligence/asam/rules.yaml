@@ -1,0 +1,185 @@
+# ASAM 4th edition — keyword/regex rule catalogue.
+#
+# Risk ratings 0–4 are produced by tallying tier weights:
+#   high_risk   -> +3
+#   moderate    -> +2
+#   mild        -> +1
+#   protective  -> -1
+# The score is then clamped to [0, 4].
+#
+# Each match records (note_id, character span) so the API can cite text.
+#
+# Sources:
+#   - ASAM Criteria, 4th Edition (2023): six-dimensional biopsychosocial framework.
+#   - ASAM Continuum levels of care: 1.0 OP, 2.1 IOP, 2.5 PHP, 3.x residential,
+#     4.0 medically managed inpatient.
+
+version: "asam-4e-rules-v1"
+edition: "4th"
+
+dimensions:
+  - id: 1
+    name: "Acute Intoxication and/or Withdrawal Potential"
+    short_name: "intoxication_withdrawal"
+    rules:
+      high_risk:
+        - r"\bdelirium tremens\b|\bDTs?\b"
+        - r"\bwithdrawal seizure"
+        - r"hospitaliz(?:ed|ation) for withdrawal"
+        - r"requir(?:es|ed) (?:medical|inpatient) detox"
+      moderate:
+        - r"moderate withdrawal"
+        - r"sweating and tremor"
+        - r"(?:1[0-9]|[2-9][0-9])\s*(?:beers?|drinks?|standard drinks?)\s*(?:per|a|/)\s*day"
+      mild:
+        # Symptom cluster — keep these distinct phrasings so any one of them
+        # can trigger a +1, but the de-dup cap in the engine prevents the
+        # same phrase from registering twice.
+        - r"mild (?:morning )?tremors?(?:\s+and\s+nausea)?"
+        - r"physiological dependence"
+        - r"(?:[6-9]|10)\s*(?:to\s*\d+)?\s*beers?\s*(?:per|a|/|daily|each)"
+      protective:
+        - r"\bdenies (?:any )?withdrawal\b"
+        - r"no (?:history of )?withdrawal"
+
+  - id: 2
+    name: "Biomedical Conditions and Complications"
+    short_name: "biomedical"
+    rules:
+      high_risk:
+        - r"unstable (?:vitals|medical condition)"
+        - r"acute (?:medical|biomedical) instability"
+        - r"requires inpatient stabilization"
+      moderate:
+        - r"chronic (?:liver|cardiac|pulmonary) disease"
+        - r"poorly controlled (?:diabetes|hypertension)"
+      mild:
+        - r"mild (?:liver enzyme|hepatic) elevation"
+        - r"chronic (?:pain|gastritis)"
+      protective:
+        - r"vitals (?:are )?stable"
+        - r"no acute biomedical conditions"
+        - r"no (?:medical|biomedical) instability"
+
+  - id: 3
+    name: "Emotional, Behavioral, or Cognitive Conditions and Complications"
+    short_name: "emotional_behavioral"
+    rules:
+      high_risk:
+        - r"acute suicidal"
+        - r"current(?:ly)? homicidal"
+        - r"acute psychosis"
+        - r"current self-harm"
+      moderate:
+        - r"daily panic attacks?"
+        - r"impending doom"
+        - r"called out sick (?:[3-9]|\d{2,}) times?"
+        - r"called out sick four times"
+        - r"functional impairment"
+        - r"co-?occurring (?:GAD|generalized anxiety|major depression)"
+        - r"isolating from (?:friends|family)"
+      mild:
+        - r"anxious mood|anxious affect"
+        - r"mild depression"
+        - r"sleep disturbance"
+        - r"(?:moderate|generalized) anxiety disorder"
+      protective:
+        - r"\bdenies (?:any )?suicidal ideation"
+        - r"\bdenies homicidal ideation"
+        - r"good insight"
+        - r"intact judgment"
+
+  - id: 4
+    name: "Readiness to Change"
+    short_name: "readiness_to_change"
+    rules:
+      high_risk:
+        - r"\bdenies (?:substance use )?(?:problem|issue)"
+        - r"pre-?contemplation"
+        - r"refus(?:es|al) treatment"
+      moderate:
+        - r"ambivalent"
+        - r"ambivalence regarding"
+        - r"uncertain(?:ty)? about (?:tolerating|managing) anxiety"
+        - r"feel(?:s|ing)? overwhelmed by the prospect"
+      mild:
+        - r"(?:fair|moderate) motivation"
+      protective:
+        - r"strong (?:internal )?desire to change"
+        - r"recognizes the (?:negative )?impact"
+        - r"motivat(?:ion|ed) (?:remains )?internally driven"
+        - r"good insight"
+
+  - id: 5
+    name: "Relapse, Continued Use, or Continued Problem Potential"
+    short_name: "relapse_potential"
+    rules:
+      high_risk:
+        - r"relapse within (?:days|hours)"
+        - r"multiple failed (?:detox|rehab) attempts"
+      moderate:
+        - r"(?:two|2|three|3|several) failed attempts"
+        - r"(?:cut down|quit) (?:twice|two times) (?:in the past month|recently)"
+        - r"unsuccessful due to .* cravings"
+        - r"intense cravings"
+        - r"rebound anxiety"
+        - r"escalating (?:alcohol )?(?:use|consumption)"
+      mild:
+        - r"craving"
+        - r"increased (?:alcohol )?use"
+      protective:
+        - r"period of abstinence"
+        - r"six months without"
+        - r"sober support"
+
+  - id: 6
+    name: "Recovery/Living Environment"
+    short_name: "recovery_environment"
+    rules:
+      high_risk:
+        - r"unstable housing"
+        - r"homeless"
+        - r"actively using (?:partner|household)"
+        - r"firearms (?:are )?(?:in|present in) the home"
+      moderate:
+        - r"strained (?:relationship|partner)"
+        - r"partner has expressed (?:significant )?frustration"
+        - r"family conflict"
+      mild:
+        - r"isolation from (?:friends|family)"
+      protective:
+        - r"supportive partner"
+        - r"no firearms (?:in the home)?"
+        - r"stable housing"
+
+# Level-of-care decision matrix.
+#
+# Conditions are evaluated top-to-bottom; first match wins. Each condition is a
+# boolean expression over `dim1`..`dim6`. We deliberately avoid `else` chains so
+# the rule order is the source of truth and reorderings are easy to review.
+
+level_of_care_matrix:
+  - code: "4.0"
+    name: "Medically Managed Inpatient"
+    when: "dim1 >= 4 or dim2 >= 4"
+    rationale_template: "High Dimension {{drivers}} risk requires medically managed inpatient stabilization."
+  - code: "3.7"
+    name: "Medically Monitored Residential"
+    when: "dim1 >= 3 or dim3 >= 4"
+    rationale_template: "Severe Dimension {{drivers}} severity exceeds outpatient capacity; medically monitored residential indicated."
+  - code: "2.5"
+    name: "Partial Hospitalization (PHP)"
+    when: "dim3 >= 3 and dim5 >= 2 and dim4 <= 2 and dim1 <= 1"
+    rationale_template: "Marked Dimension 3 severity with reinforcing relapse pressure but no acute withdrawal — PHP-level structure indicated."
+  - code: "2.1"
+    name: "Intensive Outpatient (IOP)"
+    when: "dim1 >= 1 and (dim3 >= 2 or dim5 >= 2)"
+    rationale_template: "Mild withdrawal risk plus reinforcing emotional/relapse load (dims {{drivers}}) maps to IOP-level structure."
+  - code: "1.0"
+    name: "Outpatient"
+    when: "max(dim1, dim2, dim3, dim4, dim5, dim6) <= 1"
+    rationale_template: "All dimensions in protective/mild range — outpatient services are appropriate."
+  - code: "1.0"
+    name: "Outpatient"
+    when: "true"
+    rationale_template: "No acuity drivers met — defaulting to outpatient."
