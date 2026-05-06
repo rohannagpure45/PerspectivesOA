@@ -4,12 +4,15 @@ from __future__ import annotations
 
 from datetime import UTC, datetime, time
 
+import httpx
 import pytest
 
 from app.api import extraction as extraction_api
 from app.domain.extraction import build_patient_extract
 from app.domain.models import PatientExtract
+from app.settings import Settings
 from app.simplepractice import FixtureBackend
+from app.simplepractice.client import SimplePracticeClient
 
 
 async def test_extract_returns_jamie_profile(fixture_backend: FixtureBackend) -> None:
@@ -112,6 +115,17 @@ async def test_extract_endpoint_returns_full_document(client) -> None:
     assert apt_count == 3
 
 
+async def test_fixture_backend_rejects_unknown_hash(client) -> None:
+    r = await client.get("/api/v1/patients/not-the-real-id/extract?refresh=true")
+    assert r.status_code == 404
+    assert "not-the-real-id" in r.json()["detail"]
+
+
+async def test_fixture_backend_rejects_mismatched_numeric_id(fixture_backend: FixtureBackend) -> None:
+    with pytest.raises(FileNotFoundError):
+        await fixture_backend.get_client("999999999")
+
+
 async def test_extract_endpoint_uses_cache_when_refresh_false(
     client,
     fixture_backend: FixtureBackend,
@@ -170,3 +184,90 @@ async def test_extract_endpoint_bypasses_cache_when_refresh_true(
     assert r.status_code == 200, r.text
     assert r.json()["patient"]["name"] == "Jamie D. Appleseed"
     assert calls == {"read": 0, "build": 1, "write": 1}
+
+
+async def test_demographics_endpoint_can_bypass_cache(
+    client,
+    fixture_backend: FixtureBackend,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    fresh_extract = await build_patient_extract(fixture_backend, "0c39dadff6972e0f")
+    calls = {"read": 0, "build": 0}
+
+    async def fail_read_latest_extraction(hashed_id: str) -> dict | None:
+        calls["read"] += 1
+        raise AssertionError("refresh=true should not read the cache")
+
+    async def fake_build_patient_extract(*args, **kwargs) -> PatientExtract:
+        calls["build"] += 1
+        return fresh_extract
+
+    async def noop_write_extraction(hashed_id: str, payload: dict) -> None:
+        return None
+
+    monkeypatch.setattr(extraction_api, "read_latest_extraction", fail_read_latest_extraction)
+    monkeypatch.setattr(extraction_api, "build_patient_extract", fake_build_patient_extract)
+    monkeypatch.setattr(extraction_api, "write_extraction", noop_write_extraction)
+
+    r = await client.get("/api/v1/patients/0c39dadff6972e0f/demographics?refresh=true")
+
+    assert r.status_code == 200, r.text
+    assert r.json()["name"] == "Jamie D. Appleseed"
+    assert calls == {"read": 0, "build": 1}
+
+
+async def test_simplepractice_client_merges_overview_pages() -> None:
+    calls: list[int] = []
+
+    def page_payload(page_number: int) -> dict:
+        if page_number == 1:
+            return {
+                "data": [
+                    {"type": "notes", "id": "n1", "attributes": {"title": "First"}},
+                    {"type": "appointments", "id": "a1", "attributes": {"startTime": "2026-05-05T10:00:00Z"}},
+                ],
+                "included": [{"type": "notes", "id": "inc1", "attributes": {"title": "Included 1"}}],
+            }
+        if page_number == 2:
+            return {
+                "data": [
+                    {"type": "appointments", "id": "a1", "attributes": {"startTime": "2026-05-05T10:00:00Z"}},
+                    {"type": "notes", "id": "n2", "attributes": {"title": "Second"}},
+                ],
+                "included": [
+                    {"type": "notes", "id": "inc1", "attributes": {"title": "Included 1 duplicate"}},
+                    {"type": "notes", "id": "inc2", "attributes": {"title": "Included 2"}},
+                ],
+            }
+        return {"data": [], "included": []}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        page_number = int(request.url.params.get("page[number]", "1"))
+        calls.append(page_number)
+        return httpx.Response(
+            200,
+            json=page_payload(page_number),
+            headers={"content-type": "application/vnd.api+json"},
+        )
+
+    settings = Settings(sp_session_cookie="session")
+    async with httpx.AsyncClient(
+        transport=httpx.MockTransport(handler),
+        base_url=settings.sp_base_url,
+        headers={
+            "Accept": "application/vnd.api+json",
+            "api-version": settings.sp_api_version,
+        },
+    ) as client:
+        sp = SimplePracticeClient(settings, client=client)
+        sp._csrf_token = "csrf-for-test"
+        doc = await sp.get_overview_items("106612410", page_size=2)
+
+    assert calls == [1, 2, 3]
+    assert [(r.type, r.id) for r in doc.primary_list()] == [
+        ("notes", "n1"),
+        ("appointments", "a1"),
+        ("notes", "n2"),
+    ]
+    assert doc.included.get("notes", "inc1") is not None
+    assert doc.included.get("notes", "inc2") is not None

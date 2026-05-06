@@ -1,0 +1,308 @@
+{
+  "patient": {
+    "hashed_id": "0c39dadff6972e0f",
+    "numeric_id": "106612410",
+    "name": "Jamie D. Appleseed",
+    "preferred_name": "Jamie D. Appleseed",
+    "legal_name": "Jamie Appleseed",
+    "status": "active",
+    "dob": "2025-10-31",
+    "age_years": 0,
+    "sex": null,
+    "is_minor": false,
+    "phone": "(609) 375-6850",
+    "email": "nagpure.r@northeastern.edu",
+    "address": {
+      "line1": "123 Main Street",
+      "city": "Anytown",
+      "state": "CA",
+      "postal_code": "12345"
+    },
+    "contacts": [
+      {
+        "name": "Karen Appleseed",
+        "relationship": "Family Member",
+        "phone": "(310) 555-1212",
+        "email": "kappleseed@htn.mmd",
+        "is_emergency": false
+      }
+    ],
+    "diagnoses": [
+      {
+        "code": "F41.9",
+        "description": "Anxiety disorder, unspecified"
+      },
+      {
+        "code": "F43.22",
+        "description": "Adjustment disorder with anxiety"
+      }
+    ],
+    "measured_scores": [
+      {
+        "note_id": "115732113",
+        "title": "GAD-7",
+        "score": 14,
+        "max_score": 21,
+        "severity": "Moderate",
+        "administered_at": "2026-05-07T13:00:00-05:00"
+      }
+    ]
+  },
+  "admission_assessment": {
+    "source_note_id": "925838931",
+    "noted_at": "2026-05-01T17:52:00-05:00",
+    "author": "Rohan Nagpure",
+    "title": "Admission Assessment: Biopsychosocial (BPS) Intake",
+    "sections": {
+      "history_of_present_illness": "The patient is a 30-year-old adult presenting with worsening symptoms of generalized anxiety and escalating alcohol consumption over the past six months. Jamie reports that work-related stress recently peaked after a change in management, leading to daily panic attacks characterized by palpitations, shortness of breath, and a feeling of impending doom. To cope with the anxiety, the patient has begun isolating from friends and family. The patient notes that their emotional distress is significantly impacting their occupational functioning, having called out sick four times in the last month.",
+      "substance_use_history": "Jamie reports consuming 6 to 8 beers daily, typically beginning immediately after work. This is an increase from a baseline of 2 to 3 beers on weekends a year ago. The patient reports experiencing mild morning tremors and nausea (mild withdrawal symptoms) if they do not drink the night before. Jamie has attempted to cut down on drinking twice in the past month but was unsuccessful due to intense cravings and rebound anxiety. The patient denies any history of illicit drug use or prescription medication misuse. A previous period of abstinence was achieved three years ago for approximately six months without formal treatment.",
+      "initial_risk_screening": "",
+      "suicidal_homicidal_ideation": "The patient denies any current or historical suicidal ideation, intent, or plan. Denies homicidal ideation.",
+      "medical_risk": "No acute biomedical conditions requiring immediate inpatient stabilization. Vitals are stable.",
+      "fall_risk": "Low.",
+      "living_environment": "Lives with a supportive partner, though the partner has expressed significant frustration and boundary-setting regarding Jamie’s recent drinking behaviors. There are no firearms in the home.",
+      "treatment_readiness": "The patient recognizes the negative impact of their substance use and anxiety, expressing a strong internal desire to change, though they feel overwhelmed by the prospect of managing anxiety without alcohol."
+    },
+    "initial_risk_screening": {
+      "si_hi": "The patient denies any current or historical suicidal ideation, intent, or plan. Denies homicidal ideation.",
+      "medical_risk": "No acute biomedical conditions requiring immediate inpatient stabilization. Vitals are stable.",
+      "fall_risk": "Low.",
+      "living_environment": "Lives with a supportive partner, though the partner has expressed significant frustration and boundary-setting regarding Jamie’s recent drinking behaviors. There are no firearms in the home.",
+      "treatment_readiness": "The patient recognizes the negative impact of their substance use and anxiety, expressing a strong internal desire to change, though they feel overwhelmed by the prospect of managing anxiety without alcohol."
+    },
+    "raw_text": "Admission Assessment: Biopsychosocial (BPS) Intake\n\nPatient: Jamie D. Appleseed\n\nDate of Assessment: May 1, 2026\n\nHistory of Present Illness: The patient is a 30-year-old adult presenting with worsening symptoms of generalized anxiety and escalating alcohol consumption over the past six months. Jamie reports that work-related stress recently peaked after a change in management, leading to daily panic attacks characterized by palpitations, shortness of breath, and a feeling of impending doom. To cope with the anxiety, the patient has begun isolating from friends and family. The patient notes that their emotional distress is significantly impacting their occupational functioning, having called out sick four times in the last month.\n\nSubstance Use History: Jamie reports consuming 6 to 8 beers daily, typically beginning immediately after work. This is an increase from a baseline of 2 to 3 beers on weekends a year ago. The patient reports experiencing mild morning tremors and nausea (mild withdrawal symptoms) if they do not drink the night before. Jamie has attempted to cut down on drinking twice in the past month but was unsuccessful due to intense cravings and rebound anxiety. The patient denies any history of illicit drug use or prescription medication misuse. A previous period of abstinence was achieved three years ago for approximately six months without formal treatment.\n\nInitial Risk Screening:\n\nSuicidal/Homicidal Ideation: The patient denies any current or historical suicidal ideation, intent, or plan. Denies homicidal ideation.\n\nMedical Risk: No acute biomedical conditions requiring immediate inpatient stabilization. Vitals are stable.\n\nFall Risk: Low.\n\nLiving Environment: Lives with a supportive partner, though the partner has expressed significant frustration and boundary-setting regarding Jamie’s recent drinking behaviors. There are no firearms in the home.\n\nTreatment Readiness: The patient recognizes the negative impact of their substance use and anxiety, expressing a strong internal desire to change, though they feel overwhelmed by the prospect of managing anxiety without alcohol."
+  },
+  "timeline": [
+    {
+      "date": "2026-05-07",
+      "type": "scored_measure",
+      "title": "GAD-7",
+      "note_id": "925740429",
+      "appointment_id": null,
+      "billing_code": null,
+      "start": null,
+      "end": null,
+      "progress_note": null,
+      "psychotherapy_note": null,
+      "body": null,
+      "metadata": {
+        "author": "Rohan Nagpure",
+        "is_measure": true
+      },
+      "link": "/clients/0c39dadff6972e0f/intake_notes/115732113"
+    },
+    {
+      "date": "2026-05-05",
+      "type": "chart_note",
+      "title": "Chart Note",
+      "note_id": "925740416",
+      "appointment_id": null,
+      "billing_code": null,
+      "start": null,
+      "end": null,
+      "progress_note": null,
+      "psychotherapy_note": null,
+      "body": "Client phoned this afternoon to verify our appointment tomorrow.",
+      "metadata": {
+        "author": "Rohan Nagpure",
+        "is_measure": false
+      },
+      "link": null
+    },
+    {
+      "date": "2026-05-05",
+      "type": "appointment",
+      "title": null,
+      "note_id": null,
+      "appointment_id": "3505428553",
+      "billing_code": "90834",
+      "start": "2026-05-05T16:00:00-05:00",
+      "end": "2026-05-05T17:00:00-05:00",
+      "progress_note": {
+        "note_id": "925826179",
+        "title": "DAP Note",
+        "format": "DAP",
+        "body_markdown": "### Data\n\nData\n\nClient was alert and oriented x3. His mood and affect were labile throughout the session. Jamie reported feeling more anxious than usual over the past week and noted two incidents of consuming 7 to 8 beers in a single evening. The client continues to experience mild morning tremors when alcohol intake is reduced. Jamie disclosed that their partner expressed frustration about the recent increase in drinking, adding to the client’s sense of guilt and isolation.\n\n### Assessment and Response\n\nAssessment\n\nJamie presents with moderate Alcohol Use Disorder and Generalized Anxiety Disorder that are closely intertwined; anxiety triggers craving, and alcohol use temporarily suppresses anxiety while deepening long-term dysregulation. The client demonstrates good insight but ambivalence regarding ability to tolerate anxiety without substance use. Risk for escalating withdrawal symptoms (currently mild) warrants close monitoring. Motivation for change remains internally driven.\n\n### Plan\n\nPlan\n\nContinue weekly individual therapy. Introduce psychoeducation on the anxiety-alcohol feedback loop. Explore coping strategies for managing rebound anxiety without alcohol (e.g., diaphragmatic breathing, grounding techniques). Consult regarding referral to IOP (Intensive Outpatient Program, ASAM Level 2.1) if substance use continues to escalate. Discuss partner communication strategies. Return for next session on 05/06/2026.",
+        "sections": {
+          "subjective": null,
+          "objective": null,
+          "assessment": "Assessment\n\nJamie presents with moderate Alcohol Use Disorder and Generalized Anxiety Disorder that are closely intertwined; anxiety triggers craving, and alcohol use temporarily suppresses anxiety while deepening long-term dysregulation. The client demonstrates good insight but ambivalence regarding ability to tolerate anxiety without substance use. Risk for escalating withdrawal symptoms (currently mild) warrants close monitoring. Motivation for change remains internally driven.",
+          "plan": "Continue weekly individual therapy. Introduce psychoeducation on the anxiety-alcohol feedback loop. Explore coping strategies for managing rebound anxiety without alcohol (e.g., diaphragmatic breathing, grounding techniques). Consult regarding referral to IOP (Intensive Outpatient Program, ASAM Level 2.1) if substance use continues to escalate. Discuss partner communication strategies. Return for next session on 05/06/2026.",
+          "data": "Client was alert and oriented x3. His mood and affect were labile throughout the session. Jamie reported feeling more anxious than usual over the past week and noted two incidents of consuming 7 to 8 beers in a single evening. The client continues to experience mild morning tremors when alcohol intake is reduced. Jamie disclosed that their partner expressed frustration about the recent increase in drinking, adding to the client’s sense of guilt and isolation.",
+          "response": null,
+          "behavior": null,
+          "intervention": null,
+          "problem": null,
+          "other": {}
+        },
+        "noted_at": "2026-05-05T17:39:18-05:00",
+        "author": "Rohan Nagpure"
+      },
+      "psychotherapy_note": null,
+      "body": null,
+      "metadata": {
+        "attendance_status": "Show",
+        "duration_minutes": null,
+        "rank_num": 3
+      },
+      "link": null
+    },
+    {
+      "date": "2026-05-04",
+      "type": "appointment",
+      "title": null,
+      "note_id": null,
+      "appointment_id": "3505428542",
+      "billing_code": "90834",
+      "start": "2026-05-04T14:00:00-05:00",
+      "end": "2026-05-04T15:00:00-05:00",
+      "progress_note": {
+        "note_id": "925740422",
+        "title": "SOAP Note",
+        "format": "SOAP",
+        "body_markdown": "### Subjective\n\nSubjective\n\nJamie D. Appleseed, a 30-year-old adult, presented for the initial therapy session. Client reported significant ongoing anxiety with daily panic attacks, describing palpitations, shortness of breath, and a pervasive sense of impending doom. Jamie noted that their alcohol consumption has escalated markedly over the past six months in response to work-related stress following a management change. The client is consuming 6 to 8 beers per day and reports mild morning tremors and nausea on days when alcohol intake is reduced. Jamie expressed a strong desire to change but voiced uncertainty about tolerating anxiety without the use of alcohol. The client denied suicidal ideation, homicidal ideation, or intent to harm self or others.\n\n### Objective\n\nObjective\n\nClient appeared alert and oriented x3. Affect was anxious, mood was dysphoric but engaged. Speech was clear and goal-directed. Insight into the connection between anxiety and alcohol use was fair to good. Judgment appeared intact. No evidence of acute psychosis or dissociation. Vitals not assessed in outpatient setting.\n\n### Assessment\n\nAssessment\n\nJamie presents with co-occurring Generalized Anxiety Disorder (GAD) and Alcohol Use Disorder (AUD) of moderate severity. The two conditions appear mutually reinforcing: anxiety drives alcohol use, while alcohol use disrupts neurobiological regulation and exacerbates rebound anxiety. The client’s mild withdrawal symptoms (tremors, nausea) suggest physiological dependence and require monitoring. Based on ASAM criteria, the client may meet criteria for Intensive Outpatient Program (IOP, Level 2.1) given withdrawal risk, functional impairment, and coping deficits. Strengths include internal motivation for change and a (currently strained) supportive partner relationship.\n\n### Plan\n\nPlan\n\nEstablish therapeutic alliance and complete comprehensive intake documentation. Provide psychoeducation on the anxiety-AUD cycle. Screen for severity of withdrawal using standardized tools at next visit. Introduce distress tolerance and anxiety management skills (diaphragmatic breathing, grounding). Initiate referral discussion for IOP evaluation (ASAM Level 2.1). Coordinate with prescribing provider if pharmacological support for withdrawal or anxiety is indicated. Schedule follow-up session for 05/05/2026.",
+        "sections": {
+          "subjective": "Jamie D. Appleseed, a 30-year-old adult, presented for the initial therapy session. Client reported significant ongoing anxiety with daily panic attacks, describing palpitations, shortness of breath, and a pervasive sense of impending doom. Jamie noted that their alcohol consumption has escalated markedly over the past six months in response to work-related stress following a management change. The client is consuming 6 to 8 beers per day and reports mild morning tremors and nausea on days when alcohol intake is reduced. Jamie expressed a strong desire to change but voiced uncertainty about tolerating anxiety without the use of alcohol. The client denied suicidal ideation, homicidal ideation, or intent to harm self or others.",
+          "objective": "Client appeared alert and oriented x3. Affect was anxious, mood was dysphoric but engaged. Speech was clear and goal-directed. Insight into the connection between anxiety and alcohol use was fair to good. Judgment appeared intact. No evidence of acute psychosis or dissociation. Vitals not assessed in outpatient setting.",
+          "assessment": "Jamie presents with co-occurring Generalized Anxiety Disorder (GAD) and Alcohol Use Disorder (AUD) of moderate severity. The two conditions appear mutually reinforcing: anxiety drives alcohol use, while alcohol use disrupts neurobiological regulation and exacerbates rebound anxiety. The client’s mild withdrawal symptoms (tremors, nausea) suggest physiological dependence and require monitoring. Based on ASAM criteria, the client may meet criteria for Intensive Outpatient Program (IOP, Level 2.1) given withdrawal risk, functional impairment, and coping deficits. Strengths include internal motivation for change and a (currently strained) supportive partner relationship.",
+          "plan": "Establish therapeutic alliance and complete comprehensive intake documentation. Provide psychoeducation on the anxiety-AUD cycle. Screen for severity of withdrawal using standardized tools at next visit. Introduce distress tolerance and anxiety management skills (diaphragmatic breathing, grounding). Initiate referral discussion for IOP evaluation (ASAM Level 2.1). Coordinate with prescribing provider if pharmacological support for withdrawal or anxiety is indicated. Schedule follow-up session for 05/05/2026.",
+          "data": null,
+          "response": null,
+          "behavior": null,
+          "intervention": null,
+          "problem": null,
+          "other": {}
+        },
+        "noted_at": "2026-05-05T16:11:27-05:00",
+        "author": "Rohan Nagpure"
+      },
+      "psychotherapy_note": {
+        "note_id": "925740423",
+        "title": "Psychotherapy Note",
+        "body": "Dream Imagery--journey to an unknown destination with a group of familiar and unfamiliar people, mountains, sunflowers, a dance party. He expressed feeling guilty over past arguments with his sister and being dismissive of his when they were children. Stirred feelings in me of loss of my mother and my own adjustment issues and feelings of guilt.",
+        "noted_at": "2026-05-05T16:11:27-05:00"
+      },
+      "body": null,
+      "metadata": {
+        "attendance_status": "Show",
+        "duration_minutes": null,
+        "rank_num": 2
+      },
+      "link": null
+    },
+    {
+      "date": "2026-05-03",
+      "type": "diagnosis_treatment_plan",
+      "title": "Diagnosis and treatment plan",
+      "note_id": "925740417",
+      "appointment_id": null,
+      "billing_code": null,
+      "start": null,
+      "end": null,
+      "progress_note": null,
+      "psychotherapy_note": null,
+      "body": "F41.9 - Anxiety disorder, unspecified\n\nF43.22 - Adjustment disorder with anxiety",
+      "metadata": {
+        "author": "Rohan Nagpure",
+        "is_measure": false,
+        "dtp_resource_id": "44188318",
+        "dtp_goal": null,
+        "dtp_formatted_goal": null,
+        "dtp_objective": null,
+        "dtp_formatted_objective": null
+      },
+      "link": null
+    },
+    {
+      "date": "2026-05-03",
+      "type": "appointment",
+      "title": null,
+      "note_id": null,
+      "appointment_id": "3505428529",
+      "billing_code": "90834",
+      "start": "2026-05-03T13:00:00-05:00",
+      "end": "2026-05-03T14:00:00-05:00",
+      "progress_note": {
+        "note_id": "925740420",
+        "title": "Data, Subjective, Assessment, Plan.",
+        "format": "DSAP",
+        "body_markdown": "### data\n\ndata on jamie app. 1[Insert suggested response] \n\n### subjective\n\n[Insert suggested response] for subjective\n\n### assessment\n\nassessment for jamie app 1. [Insert suggested response]\n\n### plan\n\nplan for app1 [Insert suggested response]",
+        "sections": {
+          "subjective": "[Insert suggested response] for subjective",
+          "objective": null,
+          "assessment": "assessment for jamie app 1. [Insert suggested response]",
+          "plan": "plan for app1 [Insert suggested response]",
+          "data": "data on jamie app. 1[Insert suggested response]",
+          "response": null,
+          "behavior": null,
+          "intervention": null,
+          "problem": null,
+          "other": {}
+        },
+        "noted_at": "2026-05-05T16:11:26-05:00",
+        "author": "Rohan Nagpure"
+      },
+      "psychotherapy_note": {
+        "note_id": "925740421",
+        "title": "Psychotherapy Note",
+        "body": "Dream Imagery--journey to an unknown destination with a group of familiar and unfamiliar people, mountains, sunflowers, a dance party. He expressed feeling guilty over past arguments with his sister and being dismissive of his when they were children. Stirred feelings in me of loss of my mother and my own adjustment issues and feelings of guilt.",
+        "noted_at": "2026-05-05T16:11:26-05:00"
+      },
+      "body": null,
+      "metadata": {
+        "attendance_status": "Show",
+        "duration_minutes": null,
+        "rank_num": 1
+      },
+      "link": null
+    },
+    {
+      "date": "2026-05-02",
+      "type": "scored_measure",
+      "title": "GAD-7",
+      "note_id": "925740426",
+      "appointment_id": null,
+      "billing_code": null,
+      "start": null,
+      "end": null,
+      "progress_note": null,
+      "psychotherapy_note": null,
+      "body": null,
+      "metadata": {
+        "author": "Rohan Nagpure",
+        "is_measure": true
+      },
+      "link": "/clients/0c39dadff6972e0f/intake_notes/115732111"
+    },
+    {
+      "date": "2026-05-01",
+      "type": "admission_assessment_ref",
+      "title": "Chart Note",
+      "note_id": "925838931",
+      "appointment_id": null,
+      "billing_code": null,
+      "start": null,
+      "end": null,
+      "progress_note": null,
+      "psychotherapy_note": null,
+      "body": null,
+      "metadata": {
+        "author": "Rohan Nagpure",
+        "is_measure": false
+      },
+      "link": null
+    }
+  ],
+  "diagnoses": [
+    {
+      "code": "F41.9",
+      "description": "Anxiety disorder, unspecified"
+    },
+    {
+      "code": "F43.22",
+      "description": "Adjustment disorder with anxiety"
+    }
+  ],
+  "extracted_at": "2026-05-06T17:53:28.008779Z",
+  "source": "fixture"
+}

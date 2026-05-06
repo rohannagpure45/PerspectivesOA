@@ -1,0 +1,138 @@
+{
+  "framework": "TJC CTS — Behavioral Health",
+  "rules_version": "tjc-cts-bh-curated-v1",
+  "findings": [
+    {
+      "standard": "CTS.02.01.01",
+      "ep": "EP1",
+      "title": "Comprehensive assessment completed within timeframe",
+      "verdict": "pass",
+      "rationale": "Admission Assessment is dated and precedes the first scheduled appointment.",
+      "evidence": [
+        {
+          "note_id": "925838931",
+          "span": "dmission Assessment: Biopsychosocial (BPS) Intake Patient: Jamie D. Appleseed Date of Assessment: May 1, 2026 History of Present Illness: The patient is a 30-year-old adult presenting with",
+          "matched_phrase": "Date of Assessment: May 1, 2026"
+        }
+      ]
+    },
+    {
+      "standard": "CTS.02.02.01",
+      "ep": "EP2",
+      "title": "Assessment includes spiritual/cultural orientation",
+      "verdict": "fail",
+      "rationale": "The Biopsychosocial intake omits any spiritual or cultural assessment domain. The Joint Commission requires this orientation be documented.",
+      "evidence": []
+    },
+    {
+      "standard": "CTS.02.02.01",
+      "ep": "EP4",
+      "title": "Substance use history with quantity and frequency",
+      "verdict": "pass",
+      "rationale": "Substance use history documents quantity, frequency, and pattern of use.",
+      "evidence": [
+        {
+          "note_id": "925838931",
+          "span": "occupational functioning, having called out sick four times in the last month. Substance Use History: Jamie reports consuming 6 to 8 beers daily, typically beginning immediately af",
+          "matched_phrase": "Substance Use History"
+        },
+        {
+          "note_id": "925838931",
+          "span": "k four times in the last month. Substance Use History: Jamie reports consuming 6 to 8 beers daily, typically beginning immediately after work. This is an increase from a baselin",
+          "matched_phrase": "6 to 8 beers daily"
+        }
+      ]
+    },
+    {
+      "standard": "CTS.03.01.01",
+      "ep": "EP1",
+      "title": "Treatment plan addresses identified problems",
+      "verdict": "pass",
+      "rationale": "Active diagnoses are recorded and a Diagnosis & Treatment Plan is on file.",
+      "evidence": [
+        {
+          "note_id": null,
+          "span": "Diagnosis recorded: F41.9 Anxiety disorder, unspecified",
+          "matched_phrase": "F41.9 - Anxiety disorder, unspecified"
+        },
+        {
+          "note_id": null,
+          "span": "Diagnosis recorded: F43.22 Adjustment disorder with anxiety",
+          "matched_phrase": "F43.22 - Adjustment disorder with anxiety"
+        }
+      ]
+    },
+    {
+      "standard": "CTS.03.01.03",
+      "ep": "EP2",
+      "title": "Treatment plan includes measurable goals",
+      "verdict": "fail",
+      "rationale": "The Diagnosis Treatment Plan record has goal=null and formattedGoal=null, so there is no measurable, documented treatment goal.",
+      "evidence": [
+        {
+          "note_id": "DTP/44188318",
+          "span": "{\"goal\": null, \"formattedGoal\": null}",
+          "matched_phrase": null
+        }
+      ]
+    },
+    {
+      "standard": "CTS.04.03.01",
+      "ep": "EP1",
+      "title": "Suicide and homicide risk assessed",
+      "verdict": "pass",
+      "rationale": "Initial Risk Screening explicitly addresses suicidal and homicidal ideation.",
+      "evidence": [
+        {
+          "note_id": "925838931",
+          "span": "ing: Suicidal/Homicidal Ideation: The patient denies any current or historical suicidal ideation, intent, or plan. Denies homicidal ideation. Medical Risk: No acute biomedical",
+          "matched_phrase": "suicidal ideation"
+        },
+        {
+          "note_id": "925838931",
+          "span": "imately six months without formal treatment. Initial Risk Screening: Suicidal/Homicidal Ideation: The patient denies any current or historical suicidal ideation, intent, or pla",
+          "matched_phrase": "Homicidal Ideation"
+        }
+      ]
+    },
+    {
+      "standard": "CTS.04.03.05",
+      "ep": "EP1",
+      "title": "Lethal means inquiry (firearms / weapons)",
+      "verdict": "pass",
+      "rationale": "Lethal-means inquiry documented (firearms / weapons addressed in home).",
+      "evidence": [
+        {
+          "note_id": "925838931",
+          "span": "and boundary-setting regarding Jamie’s recent drinking behaviors. There are no firearms in the home. Treatment Readiness: The patient recognizes the negative impact",
+          "matched_phrase": "firearm"
+        }
+      ]
+    },
+    {
+      "standard": "CTS.05.01.01",
+      "ep": "EP3",
+      "title": "Use of standardized outcomes measurement",
+      "verdict": "pass",
+      "rationale": "Two or more standardized scored measures are recorded across the timeline.",
+      "evidence": [
+        {
+          "note_id": "925740429",
+          "span": "GAD-7 on 2026-05-07",
+          "matched_phrase": "GAD-7"
+        },
+        {
+          "note_id": "925740426",
+          "span": "GAD-7 on 2026-05-02",
+          "matched_phrase": "GAD-7"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 2,
+    "insufficient_data": 0
+  },
+  "computed_at": "2026-05-06T17:53:28.024271Z"
+}

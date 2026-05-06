@@ -515,6 +515,9 @@ async def build_patient_extract(
     page_size: int = 20,
 ) -> PatientExtract:
     treatable_doc = await _fetch_treatable(backend, hashed_id)
+    fixture_hash = treatable_doc.primary().attr("hashedId")
+    if fixture_hash and str(fixture_hash) != hashed_id:
+        raise FileNotFoundError(f"No client found for hashed_id={hashed_id}")
     numeric_id = treatable_doc.primary().id or await backend.resolve_hashed_id(hashed_id)
     client_doc = await backend.get_client(numeric_id)
     overview = await backend.get_overview_items(numeric_id, page_size=page_size)
