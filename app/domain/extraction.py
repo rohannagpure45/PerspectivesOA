@@ -20,6 +20,7 @@ Pipeline:
      - parse the diagnosis-treatment-plan ``structure`` JSON for diagnoses;
      - collapse all entries into a date-ordered ``TimelineEntry`` list.
 """
+
 from __future__ import annotations
 
 import json
@@ -31,8 +32,8 @@ from typing import Any
 from dateutil import parser as dateparser
 
 from app.domain.models import (
-    AdmissionAssessment,
     Address,
+    AdmissionAssessment,
     Contact,
     Diagnosis,
     InitialRiskScreening,
@@ -255,9 +256,7 @@ def build_patient_profile(
         if related_ref:
             related = client_doc.included.by_ref(related_ref)
             if related:
-                contact_name = _coerce_str(
-                    related.attr("name") or related.attr("preferredName")
-                )
+                contact_name = _coerce_str(related.attr("name") or related.attr("preferredName"))
                 for pref in related.rel_refs("phones"):
                     pres = client_doc.included.by_ref(pref)
                     if pres:
@@ -311,11 +310,7 @@ def build_patient_profile(
         )
 
     dob = _parse_date(treatable_attrs.get("birthDate") or client_attrs.get("birthDate"))
-    name = (
-        _coerce_str(treatable_attrs.get("name"))
-        or _coerce_str(client_attrs.get("name"))
-        or "Unknown"
-    )
+    name = _coerce_str(treatable_attrs.get("name")) or _coerce_str(client_attrs.get("name")) or "Unknown"
 
     if not primary_phone:
         primary_phone = _format_phone(_coerce_str(treatable_attrs.get("defaultPhoneNumber")))
@@ -577,9 +572,7 @@ async def build_patient_extract(
             apt_resource = _resolve_appointment_in_overview(overview, resource.id, apt_doc)
             if apt_resource is None:
                 continue
-            timeline.append(
-                _appointment_entry(apt_resource, apt_doc, all_notes, seen_note_ids)
-            )
+            timeline.append(_appointment_entry(apt_resource, apt_doc, all_notes, seen_note_ids))
         elif resource.type == "notes":
             note_entry = _note_entry(resource, hashed_id, overview, bps_note, seen_note_ids)
             if note_entry is not None:
@@ -625,13 +618,13 @@ async def _fetch_treatable(backend: SimplePracticeBackend, hashed_id: str) -> Do
     # for live, and read the fixture for offline. Simplest: have the backend
     # implement a resolve+return. We add a small adapter:
     if isinstance(backend, FixtureBackend):
-        return backend._load("treatable-client.json")  # noqa: SLF001
+        return backend._load("treatable-client.json")
     # Live: the client method ``resolve_hashed_id`` returns just the id.
     # Re-issue the call here using its private ``_api_get``.
     from app.simplepractice.client import SimplePracticeClient
 
     if isinstance(backend, SimplePracticeClient):
-        return await backend._api_get(  # noqa: SLF001
+        return await backend._api_get(
             f"/frontend/treatable-clients/{hashed_id}",
             params={"filter[findByHashedId]": "true"},
         )

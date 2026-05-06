@@ -16,6 +16,7 @@ Auth model (verified against the captured HAR):
 
 This module only ever issues ``GET`` requests. Writes are out of scope.
 """
+
 from __future__ import annotations
 
 import asyncio
@@ -130,16 +131,12 @@ class SimplePracticeClient(SimplePracticeBackend):
         token_raw = meta.get("content") if (meta is not None and hasattr(meta, "get")) else None
         token = token_raw if isinstance(token_raw, str) else None
         if not token:
-            raise RuntimeError(
-                "Could not parse CSRF token from /clients/{hashed}/overview HTML"
-            )
+            raise RuntimeError("Could not parse CSRF token from /clients/{hashed}/overview HTML")
         self._csrf_token = token
         log.debug("CSRF token discovered: %s...", token[:12])
         return token
 
-    async def _api_get(
-        self, path: str, params: dict[str, str] | None = None
-    ) -> Document:
+    async def _api_get(self, path: str, params: dict[str, str] | None = None) -> Document:
         token = await self._ensure_csrf()
         for attempt in range(3):
             r = await self._client.get(
