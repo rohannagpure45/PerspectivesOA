@@ -1,5 +1,11 @@
 # PerspectivesOA
 
+#### I startedby clicking around the simplepractice sandbox ui with devtools/cdp Network open, captured the HAR, then used it to identify the real /frontend/* json:api calls for demographics, overview timeline, appointments, intake notes, diagnoses, and measures. 
+You kind of leaked some of the sauce during our coffee chat (find the underlying xhr/json calls the UI fires when elements are pressed). Then I built a fastapi extraction layer that turns those responses into formatted patient json, then added deterministic ASAM 4th-edition and tjc cts audit endpoints with cited evidence from the notes. I was thinking about using an llm to help with the diagnoses but decided on having a stricter framework as you said the language has to be precise for the payors to approve/not deny claims to increase reliability. Finally, hardened the implementation by validating fixtures, removing stale caches, fetching overview pages, adding regression tests, updating docs, and regenerating the sample json responses for the submission. 
+
+#### the json files can be found at PerspectivesOA/samples, or attached in the email I am about to send to you.
+---
+
 A FastAPI service that reverse-engineers SimplePractice's internal `/frontend/*`
 JSON:API to extract a complete patient chart, then runs **deterministic** ASAM
 4th edition Level-of-Care and Joint Commission CTS audit engines over the
