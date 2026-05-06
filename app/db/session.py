@@ -11,6 +11,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from app.db.models import AsamAudit, Extraction, TjcAudit
@@ -31,6 +32,25 @@ def _factory() -> async_sessionmaker[AsyncSession] | None:
         _engine = create_async_engine(settings.database_url, future=True, pool_pre_ping=True)
         _session_factory = async_sessionmaker(_engine, expire_on_commit=False)
     return _session_factory
+
+
+async def read_latest_extraction(hashed_id: str) -> dict[str, Any] | None:
+    factory = _factory()
+    if factory is None:
+        return None
+    try:
+        async with factory() as session:
+            result = await session.execute(
+                select(Extraction.payload)
+                .where(Extraction.hashed_id == hashed_id)
+                .order_by(Extraction.created_at.desc())
+                .limit(1)
+            )
+            payload = result.scalar_one_or_none()
+            return dict(payload) if payload is not None else None
+    except Exception:  # pragma: no cover — best-effort
+        log.exception("read_latest_extraction failed")
+        return None
 
 
 async def write_extraction(hashed_id: str, payload: dict[str, Any]) -> None:

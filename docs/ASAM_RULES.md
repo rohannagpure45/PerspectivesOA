@@ -95,7 +95,7 @@ top-to-bottom; **first match wins**:
 | 1 | 4.0 Medically Managed Inpatient | `dim1 >= 4 or dim2 >= 4` |
 | 2 | 3.7 Medically Monitored Residential | `dim1 >= 3 or dim3 >= 4` |
 | 3 | 2.5 Partial Hospitalization | `dim3 >= 3 and dim5 >= 2 and dim4 <= 2 and dim1 <= 1` |
-| 4 | 2.1 Intensive Outpatient | `dim1 >= 1 and (dim3 >= 2 or dim5 >= 2)` |
+| 4 | 2.1 Intensive Outpatient | `dim1 >= 2 and (dim3 >= 2 or dim5 >= 2)` |
 | 5 | 1.0 Outpatient | `max(dim1..dim6) <= 1` |
 | 6 | 1.0 Outpatient (default) | `true` |
 

@@ -2,7 +2,13 @@
 
 from __future__ import annotations
 
+from datetime import UTC, datetime, time
+
+import pytest
+
+from app.api import extraction as extraction_api
 from app.domain.extraction import build_patient_extract
+from app.domain.models import PatientExtract
 from app.simplepractice import FixtureBackend
 
 
@@ -70,9 +76,24 @@ async def test_timeline_ordering_and_kinds(fixture_backend: FixtureBackend) -> N
     extract = await build_patient_extract(fixture_backend, "0c39dadff6972e0f")
 
     assert len(extract.timeline) >= 7
-    # Timeline is ordered newest-first.
-    dates = [e.start or e.progress_note.noted_at if e.progress_note else None for e in extract.timeline]
-    timestamps = [d for d in dates if d]
+    assert extract.timeline[0].type == "scored_measure"
+    assert extract.timeline[0].note_id == "925740429"
+
+    # Timeline is ordered newest-first across appointment starts, note timestamps, and date-only entries.
+    def entry_timestamp(entry) -> datetime:
+        if entry.start:
+            dt = entry.start
+        elif entry.progress_note and entry.progress_note.noted_at:
+            dt = entry.progress_note.noted_at
+        elif entry.psychotherapy_note and entry.psychotherapy_note.noted_at:
+            dt = entry.psychotherapy_note.noted_at
+        elif entry.date:
+            dt = datetime.combine(entry.date, time.max, tzinfo=UTC)
+        else:
+            dt = datetime.min.replace(tzinfo=UTC)
+        return dt if dt.tzinfo else dt.replace(tzinfo=UTC)
+
+    timestamps = [entry_timestamp(e) for e in extract.timeline]
     assert timestamps == sorted(timestamps, reverse=True)
 
     types = [e.type for e in extract.timeline]
@@ -89,3 +110,63 @@ async def test_extract_endpoint_returns_full_document(client) -> None:
     assert body["admission_assessment"]["source_note_id"] == "925838931"
     apt_count = sum(1 for e in body["timeline"] if e["type"] == "appointment")
     assert apt_count == 3
+
+
+async def test_extract_endpoint_uses_cache_when_refresh_false(
+    client,
+    fixture_backend: FixtureBackend,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    cached_extract = await build_patient_extract(fixture_backend, "0c39dadff6972e0f")
+    cached_payload = cached_extract.model_dump(mode="json")
+    calls = {"read": 0, "build": 0}
+
+    async def fake_read_latest_extraction(hashed_id: str) -> dict:
+        calls["read"] += 1
+        assert hashed_id == "0c39dadff6972e0f"
+        return cached_payload
+
+    async def fail_build_patient_extract(*args, **kwargs) -> PatientExtract:
+        calls["build"] += 1
+        raise AssertionError("refresh=false should serve a valid cached extraction")
+
+    monkeypatch.setattr(extraction_api, "read_latest_extraction", fake_read_latest_extraction)
+    monkeypatch.setattr(extraction_api, "build_patient_extract", fail_build_patient_extract)
+
+    r = await client.get("/api/v1/patients/0c39dadff6972e0f/extract")
+
+    assert r.status_code == 200, r.text
+    assert r.json()["patient"]["name"] == "Jamie D. Appleseed"
+    assert calls == {"read": 1, "build": 0}
+
+
+async def test_extract_endpoint_bypasses_cache_when_refresh_true(
+    client,
+    fixture_backend: FixtureBackend,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    fresh_extract = await build_patient_extract(fixture_backend, "0c39dadff6972e0f")
+    calls = {"read": 0, "build": 0, "write": 0}
+
+    async def fail_read_latest_extraction(hashed_id: str) -> dict | None:
+        calls["read"] += 1
+        raise AssertionError("refresh=true should not read the cache")
+
+    async def fake_build_patient_extract(*args, **kwargs) -> PatientExtract:
+        calls["build"] += 1
+        return fresh_extract
+
+    async def fake_write_extraction(hashed_id: str, payload: dict) -> None:
+        calls["write"] += 1
+        assert hashed_id == "0c39dadff6972e0f"
+        assert payload["patient"]["name"] == "Jamie D. Appleseed"
+
+    monkeypatch.setattr(extraction_api, "read_latest_extraction", fail_read_latest_extraction)
+    monkeypatch.setattr(extraction_api, "build_patient_extract", fake_build_patient_extract)
+    monkeypatch.setattr(extraction_api, "write_extraction", fake_write_extraction)
+
+    r = await client.get("/api/v1/patients/0c39dadff6972e0f/extract?refresh=true")
+
+    assert r.status_code == 200, r.text
+    assert r.json()["patient"]["name"] == "Jamie D. Appleseed"
+    assert calls == {"read": 0, "build": 1, "write": 1}

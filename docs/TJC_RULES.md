@@ -131,9 +131,9 @@ failed because spiritual orientation was not documented") — verbatim.
 ## 5. Why CTS.03.01.03 EP2 fails for Jamie
 
 The DTP resource `diagnosisTreatmentPlans/44188318` carries
-`attributes.structure` JSON whose `goal` and `formattedGoal` fields are both
-`null`. The engine surfaces a citation pointing at the structural location
-of the failure:
+top-level `attributes.goal` and `attributes.formattedGoal` fields that are
+both `null`. The engine surfaces a citation pointing at the structured
+location of the failure:
 
 ```json
 {

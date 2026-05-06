@@ -55,19 +55,21 @@ to `.env`, paste a `_simple_practice_session` cookie value, and unset
 ## Endpoints
 
 ### Task 2 — Data Extraction
-| Method | Path | Description |
-| --- | --- | --- |
-| `GET` | `/api/v1/patients/{hashed_id}/extract` | The canonical extract: demographics, BPS admission assessment, full timeline, diagnoses |
-| `GET` | `/api/v1/patients/{hashed_id}/demographics` | Just the patient profile (name, dob, contacts, measured scores) |
-| `GET` | `/api/v1/patients/{hashed_id}/admission-assessment` | The Biopsychosocial intake note as parsed sections |
-| `GET` | `/api/v1/patients/{hashed_id}/timeline` | Newest-first timeline of appointments + notes |
-| `GET` | `/api/v1/healthz` | Liveness probe |
+
+| Method | Path                                                | Description                                                                             |
+| ------ | --------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `GET`  | `/api/v1/patients/{hashed_id}/extract`              | The canonical extract: demographics, BPS admission assessment, full timeline, diagnoses |
+| `GET`  | `/api/v1/patients/{hashed_id}/demographics`         | Just the patient profile (name, dob, contacts, measured scores)                         |
+| `GET`  | `/api/v1/patients/{hashed_id}/admission-assessment` | The Biopsychosocial intake note as parsed sections                                      |
+| `GET`  | `/api/v1/patients/{hashed_id}/timeline`             | Newest-first timeline of appointments + notes                                           |
+| `GET`  | `/api/v1/healthz`                                   | Liveness probe                                                                          |
 
 ### Task 3 — Clinical Intelligence
-| Method | Path | Description |
-| --- | --- | --- |
-| `POST` | `/api/v1/patients/{hashed_id}/asam` | Six-dimension ASAM 4e scoring + recommended Level of Care, with cited spans |
-| `POST` | `/api/v1/patients/{hashed_id}/tjc-audit` | Pass/fail/insufficient-data verdicts for a curated set of TJC CTS EPs |
+
+| Method | Path                                     | Description                                                                 |
+| ------ | ---------------------------------------- | --------------------------------------------------------------------------- |
+| `POST` | `/api/v1/patients/{hashed_id}/asam`      | Six-dimension ASAM 4e scoring + recommended Level of Care, with cited spans |
+| `POST` | `/api/v1/patients/{hashed_id}/tjc-audit` | Pass/fail/insufficient-data verdicts for a curated set of TJC CTS EPs       |
 
 See [docs/ENDPOINTS.md](docs/ENDPOINTS.md) for full request/response shapes
 (including the upstream SimplePractice endpoints we reverse-engineered).
@@ -95,13 +97,13 @@ service stays correct when the DB is offline.
 Key design choices (per the assessment's "rule-based reasoning, no LLM"
 constraint):
 
-* The ASAM engine and TJC engine are **deterministic regex+predicate
+- The ASAM engine and TJC engine are **deterministic regex+predicate
   pipelines**. All thresholds, phrase lists, and the LoC decision matrix
   live in YAML so policy changes are diff-reviewable.
-* Repeated mentions of the same finding across multiple notes count as
+- Repeated mentions of the same finding across multiple notes count as
   evidence (more citations) but not as additional severity, so we don't
   over-score from clinically-redundant text.
-* Negation is detected with a backward-looking regex: `no evidence of acute
+- Negation is detected with a backward-looking regex: `no evidence of acute
   psychosis` does not raise the Dimension 3 rating.
 
 ---
@@ -150,34 +152,36 @@ creates the schema and pre-warms the extraction cache against the fixture.
 
 Tables (single Alembic migration, see `alembic/versions/`):
 
-| Table | Purpose |
-| --- | --- |
+| Table         | Purpose                                               |
+| ------------- | ----------------------------------------------------- |
 | `extractions` | Latest `PatientExtract` payload per hashed id (jsonb) |
-| `asam_audits` | History of every ASAM run for trend analysis |
-| `tjc_audits` | History of every TJC audit run |
+| `asam_audits` | History of every ASAM run for trend analysis          |
+| `tjc_audits`  | History of every TJC audit run                        |
 
-All writes are best-effort — a missing/dead Postgres never breaks the API.
+Cache reads and all writes are best-effort — a missing/dead Postgres never
+breaks the API.
 
 ---
 
 ## Testing
 
 ```bash
-make test       # 12 tests, all run offline against fixtures
+make test       # all tests run offline against fixtures
 make lint       # ruff check + format check
 make typecheck  # mypy strict
 ```
 
 Test files:
 
-* `tests/test_jsonapi_parser.py` — IncludedIndex resolution + ref traversal
-* `tests/test_extraction.py` — `build_patient_extract` returns the expected
+- `tests/test_jsonapi_parser.py` — IncludedIndex resolution + ref traversal
+- `tests/test_extraction.py` — `build_patient_extract` returns the expected
   Jamie chart (demographics, contacts, diagnoses, BPS structure, three
-  classified progress notes, timeline ordering, and the API endpoints).
-* `tests/test_asam_jamie.py` — ASAM produces (2, 0, 3, 2, 2, 1) and
+  classified progress notes, timeline ordering, cache behavior, and the API
+  endpoints).
+- `tests/test_asam_jamie.py` — ASAM produces (2, 0, 3, 2, 2, 1) and
   recommends 2.1 IOP — matching the SOAP note's own clinical disposition.
-* `tests/test_tjc_jamie.py` — CTS.02.02.01 EP2 fails on missing spiritual
-  assessment, CTS.03.01.03 EP2 fails on `goal: null`, the rest pass.
+- `tests/test_tjc_jamie.py` — CTS.02.02.01 EP2 fails on missing spiritual
+  assessment, CTS.03.01.03 EP2 fails on structured `goal: null`, the rest pass.
 
 ---
 

@@ -12,6 +12,7 @@ async def test_jamie_asam_dimension_ratings(fixture_backend: FixtureBackend) -> 
     assessment = AsamEngine().assess(extract)
 
     by_id = {d.id: d for d in assessment.dimensions}
+    assert tuple(by_id[i].risk_rating for i in range(1, 7)) == (2, 0, 3, 2, 2, 1)
 
     # Mild withdrawal documented in BPS + SOAP -> Dim 1 = mild risk.
     assert by_id[1].risk_rating >= 1

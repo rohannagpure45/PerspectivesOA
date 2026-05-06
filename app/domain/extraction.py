@@ -26,7 +26,7 @@ from __future__ import annotations
 import json
 import logging
 import re
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, time
 from typing import Any
 
 from dateutil import parser as dateparser
@@ -581,6 +581,8 @@ async def build_patient_extract(
     # Sort newest first (start time / noted_at / date) but keep structure if equal.
     def _entry_sort_key(e: TimelineEntry) -> tuple[float, int]:
         ts: datetime | None = e.start or _entry_dt(e)
+        if ts is not None and ts.tzinfo is None:
+            ts = ts.replace(tzinfo=UTC)
         return (-(ts.timestamp() if ts else 0.0), 0)
 
     timeline.sort(key=_entry_sort_key)
@@ -604,6 +606,8 @@ def _entry_dt(entry: TimelineEntry) -> datetime | None:
         return entry.progress_note.noted_at
     if entry.psychotherapy_note and entry.psychotherapy_note.noted_at:
         return entry.psychotherapy_note.noted_at
+    if entry.date:
+        return datetime.combine(entry.date, time.max, tzinfo=UTC)
     return None
 
 
@@ -717,6 +721,19 @@ def _note_entry(
         )
 
     if this_type == "DiagnosisTreatmentPlan":
+        notable_ref = note.rel_ref("notable")
+        dtp_resource = overview.included.by_ref(notable_ref)
+        if notable_ref:
+            metadata["dtp_resource_id"] = notable_ref[1]
+        if dtp_resource:
+            metadata.update(
+                {
+                    "dtp_goal": dtp_resource.attr("goal"),
+                    "dtp_formatted_goal": dtp_resource.attr("formattedGoal"),
+                    "dtp_objective": dtp_resource.attr("objective"),
+                    "dtp_formatted_objective": dtp_resource.attr("formattedObjective"),
+                }
+            )
         return TimelineEntry(
             date=noted_at.date() if noted_at else None,
             type="diagnosis_treatment_plan",

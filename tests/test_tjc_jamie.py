@@ -31,6 +31,10 @@ async def test_jamie_tjc_findings(fixture_backend: FixtureBackend) -> None:
     goal = by_key[("CTS.03.01.03", "EP2")]
     assert goal.verdict == "fail"
     assert "goal" in goal.rationale.lower()
+    assert goal.evidence
+    assert goal.evidence[0].note_id == "DTP/44188318"
+    assert '"goal": null' in goal.evidence[0].span
+    assert '"formattedGoal": null' in goal.evidence[0].span
 
     # SI/HI screened in BPS -> CTS.04.03.01 EP1 passes.
     assert by_key[("CTS.04.03.01", "EP1")].verdict == "pass"

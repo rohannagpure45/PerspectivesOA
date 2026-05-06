@@ -9,6 +9,7 @@ Inputs: ``PatientExtract``. No external dependencies, no LLM, no clock.
 
 from __future__ import annotations
 
+import json
 import re
 from datetime import UTC, datetime
 from functools import lru_cache
@@ -185,12 +186,6 @@ def _eval_diagnoses_and_dtp(
 
 
 def _eval_dtp_goal(rule: dict[str, Any], extract: PatientExtract) -> tuple[Verdict, str, list[AuditEvidence]]:
-    # Inspect the DTP body in the timeline; if the rule require_all says so,
-    # require non-empty goal text. SimplePractice writes ``"goal": null`` when
-    # the clinician hasn't filled it in. The DTP body in the timeline is the
-    # rendered diagnosis list; the structured null-ness lives on the DTP
-    # resource. We surface the absence by inspecting whether the DTP body
-    # mentions a goal section.
     dtp_entries = [e for e in extract.timeline if e.type == "diagnosis_treatment_plan"]
     if not dtp_entries:
         return (
@@ -198,30 +193,35 @@ def _eval_dtp_goal(rule: dict[str, Any], extract: PatientExtract) -> tuple[Verdi
             "No DiagnosisTreatmentPlan record on file.",
             [],
         )
-    # We can only see what's surfaced in the timeline. SP renders the DTP body
-    # as the diagnosis list; absence of any "Goal:" / "Plan:" header is a hard
-    # signal that the goal field was left null.
-    body = dtp_entries[0].body or ""
-    goal_present = bool(re.search(r"(?i)\bgoal\b\s*[:\-]?\s*\S+", body))
+    entry = dtp_entries[0]
+    goal = entry.metadata.get("dtp_goal")
+    formatted_goal = entry.metadata.get("dtp_formatted_goal")
+    dtp_id = entry.metadata.get("dtp_resource_id")
+
+    def _has_text(value: Any) -> bool:
+        return isinstance(value, str) and bool(value.strip())
+
+    goal_present = _has_text(goal) or _has_text(formatted_goal)
     if goal_present:
         return (
             "pass",
             str(rule.get("pass_rationale_template", "")).strip(),
             [
                 AuditEvidence(
-                    note_id=dtp_entries[0].note_id,
-                    span=body[:200],
+                    note_id=f"DTP/{dtp_id}" if dtp_id else entry.note_id,
+                    span=f"goal={goal!r}; formattedGoal={formatted_goal!r}",
                     matched_phrase="goal",
                 )
             ],
         )
+    span = json.dumps({"goal": goal, "formattedGoal": formatted_goal})
     return (
         "fail",
         str(rule.get("failure_rationale_template", "")).strip(),
         [
             AuditEvidence(
-                note_id=dtp_entries[0].note_id,
-                span=body[:200] or "<empty DTP body>",
+                note_id=f"DTP/{dtp_id}" if dtp_id else entry.note_id,
+                span=span,
                 matched_phrase=None,
             )
         ],

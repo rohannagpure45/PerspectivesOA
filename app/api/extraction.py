@@ -8,7 +8,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import JSONResponse
 
-from app.db.session import write_extraction
+from app.db.session import read_latest_extraction, write_extraction
 from app.domain.extraction import build_patient_extract
 from app.domain.models import (
     AdmissionAssessment,
@@ -16,6 +16,7 @@ from app.domain.models import (
     PatientProfile,
     TimelineEntry,
 )
+from app.settings import get_settings
 from app.simplepractice.client import SimplePracticeBackend
 
 log = logging.getLogger(__name__)
@@ -28,8 +29,20 @@ async def _get_extract(
     hashed_id: str,
     refresh: bool,
 ) -> PatientExtract:
+    if not refresh:
+        try:
+            cached = await read_latest_extraction(hashed_id)
+            if cached is not None:
+                return PatientExtract.model_validate(cached)
+        except Exception:
+            log.exception("Failed to read cached extraction (continuing)")
+
     try:
-        extract = await build_patient_extract(backend, hashed_id)
+        extract = await build_patient_extract(
+            backend,
+            hashed_id,
+            page_size=get_settings().sp_overview_page_size,
+        )
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except RuntimeError as exc:

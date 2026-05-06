@@ -173,7 +173,7 @@ level_of_care_matrix:
     rationale_template: "Marked Dimension 3 severity with reinforcing relapse pressure but no acute withdrawal — PHP-level structure indicated."
   - code: "2.1"
     name: "Intensive Outpatient (IOP)"
-    when: "dim1 >= 1 and (dim3 >= 2 or dim5 >= 2)"
+    when: "dim1 >= 2 and (dim3 >= 2 or dim5 >= 2)"
     rationale_template: "Mild withdrawal risk plus reinforcing emotional/relapse load (dims {{drivers}}) maps to IOP-level structure."
   - code: "1.0"
     name: "Outpatient"
