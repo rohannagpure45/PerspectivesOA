@@ -47,12 +47,19 @@ class FixtureBackend(SimplePracticeBackend):
     async def resolve_hashed_id(self, hashed_id: str) -> str:
         doc = self._load("treatable-client.json")
         primary = doc.primary()
+        fixture_hash = primary.attr("hashedId")
+        if fixture_hash and str(fixture_hash) != hashed_id:
+            raise FileNotFoundError(f"No fixture client for hashed_id={hashed_id}")
         if primary.id:
             return primary.id
         raise RuntimeError("Fixture treatable-client.json has no primary id")
 
     async def get_client(self, numeric_id: str) -> Document:
-        return self._load("client.json")
+        doc = self._load("client.json")
+        primary = doc.primary()
+        if primary.id != str(numeric_id):
+            raise FileNotFoundError(f"No fixture client for numeric_id={numeric_id}")
+        return doc
 
     async def get_overview_items(self, numeric_id: str, page_size: int = 20) -> Document:
         return self._load("overview-items.json")

@@ -74,14 +74,22 @@ async def get_extract(
 
 
 @router.get("/{hashed_id}/demographics", response_model=PatientProfile)
-async def get_demographics(hashed_id: str, backend: BackendDep) -> PatientProfile:
-    extract = await _get_extract(backend, hashed_id, refresh=False)
+async def get_demographics(
+    hashed_id: str,
+    backend: BackendDep,
+    refresh: bool = Query(default=False, description="Bypass cache and re-fetch from SP"),
+) -> PatientProfile:
+    extract = await _get_extract(backend, hashed_id, refresh=refresh)
     return extract.patient
 
 
 @router.get("/{hashed_id}/admission-assessment")
-async def get_admission_assessment(hashed_id: str, backend: BackendDep) -> AdmissionAssessment:
-    extract = await _get_extract(backend, hashed_id, refresh=False)
+async def get_admission_assessment(
+    hashed_id: str,
+    backend: BackendDep,
+    refresh: bool = Query(default=False, description="Bypass cache and re-fetch from SP"),
+) -> AdmissionAssessment:
+    extract = await _get_extract(backend, hashed_id, refresh=refresh)
     if not extract.admission_assessment:
         raise HTTPException(
             status_code=404,
@@ -91,8 +99,12 @@ async def get_admission_assessment(hashed_id: str, backend: BackendDep) -> Admis
 
 
 @router.get("/{hashed_id}/timeline", response_model=list[TimelineEntry])
-async def get_timeline(hashed_id: str, backend: BackendDep) -> list[TimelineEntry]:
-    extract = await _get_extract(backend, hashed_id, refresh=False)
+async def get_timeline(
+    hashed_id: str,
+    backend: BackendDep,
+    refresh: bool = Query(default=False, description="Bypass cache and re-fetch from SP"),
+) -> list[TimelineEntry]:
+    extract = await _get_extract(backend, hashed_id, refresh=refresh)
     return extract.timeline
 
 

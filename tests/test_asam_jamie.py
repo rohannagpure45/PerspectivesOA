@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+import pytest
+
+from app.api import intelligence as intelligence_api
 from app.domain.extraction import build_patient_extract
+from app.domain.models import PatientExtract
 from app.intelligence.asam import AsamEngine
 from app.simplepractice import FixtureBackend
 
@@ -60,3 +64,51 @@ async def test_asam_endpoint_returns_evidence(client) -> None:
         for dim in body["dimensions"]
     )
     assert any_bps_cite, "expected at least one ASAM citation against the BPS note"
+
+
+async def test_asam_endpoint_refreshes_extraction_by_default(
+    client,
+    fixture_backend: FixtureBackend,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extract = await build_patient_extract(fixture_backend, "0c39dadff6972e0f")
+    calls: list[bool] = []
+
+    async def fake_get_extract(*args, refresh: bool) -> PatientExtract:
+        calls.append(refresh)
+        return extract
+
+    async def noop_write_asam_audit(hashed_id: str, payload: dict) -> None:
+        return None
+
+    monkeypatch.setattr(intelligence_api, "_get_extract", fake_get_extract)
+    monkeypatch.setattr(intelligence_api, "write_asam_audit", noop_write_asam_audit)
+
+    r = await client.post("/api/v1/patients/0c39dadff6972e0f/asam")
+
+    assert r.status_code == 200, r.text
+    assert calls == [True]
+
+
+async def test_asam_endpoint_allows_cached_extraction_override(
+    client,
+    fixture_backend: FixtureBackend,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extract = await build_patient_extract(fixture_backend, "0c39dadff6972e0f")
+    calls: list[bool] = []
+
+    async def fake_get_extract(*args, refresh: bool) -> PatientExtract:
+        calls.append(refresh)
+        return extract
+
+    async def noop_write_asam_audit(hashed_id: str, payload: dict) -> None:
+        return None
+
+    monkeypatch.setattr(intelligence_api, "_get_extract", fake_get_extract)
+    monkeypatch.setattr(intelligence_api, "write_asam_audit", noop_write_asam_audit)
+
+    r = await client.post("/api/v1/patients/0c39dadff6972e0f/asam?refresh=false")
+
+    assert r.status_code == 200, r.text
+    assert calls == [False]

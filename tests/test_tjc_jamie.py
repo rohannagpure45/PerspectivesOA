@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+import pytest
+
+from app.api import intelligence as intelligence_api
 from app.domain.extraction import build_patient_extract
+from app.domain.models import PatientExtract
 from app.intelligence.tjc import TjcEngine
 from app.simplepractice import FixtureBackend
 
@@ -59,3 +63,51 @@ async def test_tjc_endpoint(client) -> None:
     assert body["summary"]["passed"] >= 5
     failed_titles = [f["title"] for f in body["findings"] if f["verdict"] == "fail"]
     assert any("spiritual" in t.lower() or "cultural" in t.lower() for t in failed_titles)
+
+
+async def test_tjc_endpoint_refreshes_extraction_by_default(
+    client,
+    fixture_backend: FixtureBackend,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extract = await build_patient_extract(fixture_backend, "0c39dadff6972e0f")
+    calls: list[bool] = []
+
+    async def fake_get_extract(*args, refresh: bool) -> PatientExtract:
+        calls.append(refresh)
+        return extract
+
+    async def noop_write_tjc_audit(hashed_id: str, payload: dict) -> None:
+        return None
+
+    monkeypatch.setattr(intelligence_api, "_get_extract", fake_get_extract)
+    monkeypatch.setattr(intelligence_api, "write_tjc_audit", noop_write_tjc_audit)
+
+    r = await client.post("/api/v1/patients/0c39dadff6972e0f/tjc-audit")
+
+    assert r.status_code == 200, r.text
+    assert calls == [True]
+
+
+async def test_tjc_endpoint_allows_cached_extraction_override(
+    client,
+    fixture_backend: FixtureBackend,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extract = await build_patient_extract(fixture_backend, "0c39dadff6972e0f")
+    calls: list[bool] = []
+
+    async def fake_get_extract(*args, refresh: bool) -> PatientExtract:
+        calls.append(refresh)
+        return extract
+
+    async def noop_write_tjc_audit(hashed_id: str, payload: dict) -> None:
+        return None
+
+    monkeypatch.setattr(intelligence_api, "_get_extract", fake_get_extract)
+    monkeypatch.setattr(intelligence_api, "write_tjc_audit", noop_write_tjc_audit)
+
+    r = await client.post("/api/v1/patients/0c39dadff6972e0f/tjc-audit?refresh=false")
+
+    assert r.status_code == 200, r.text
+    assert calls == [False]

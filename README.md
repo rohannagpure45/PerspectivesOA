@@ -24,6 +24,7 @@ app/
   db/                 # SQLAlchemy models + async session (cache only)
 fixtures/             # HAR-derived JSON pinned to Jamie's chart
 scripts/parse_har.py  # walks a HAR, materializes fixtures/*.json
+samples/              # regenerated sample Task 2 / Task 3 JSON outputs
 docs/
   ENDPOINTS.md        # reverse-engineered SP endpoint catalog
   ASAM_RULES.md       # rule-by-rule rationale + 4th-edition citations
@@ -74,6 +75,11 @@ to `.env`, paste a `_simple_practice_session` cookie value, and unset
 See [docs/ENDPOINTS.md](docs/ENDPOINTS.md) for full request/response shapes
 (including the upstream SimplePractice endpoints we reverse-engineered).
 
+`/extract` is cacheable by default and supports `?refresh=true`. The clinical
+intelligence endpoints default to fresh extraction (`refresh=true`) so ASAM and
+TJC verdicts are based on the latest available chart text; pass `refresh=false`
+only when you intentionally want to reuse the extraction cache.
+
 ---
 
 ## Architecture
@@ -90,8 +96,9 @@ Caller → FastAPI router
           ├── AsamEngine        — rules.yaml → six dimension scores → LoC matrix
           └── TjcEngine         — rules.yaml → CTS EP verdicts with citation spans
 
-PostgreSQL is used as a best-effort cache for /extract and audit history; the
-service stays correct when the DB is offline.
+PostgreSQL is used as a best-effort cache for /extract and audit history; Task
+3 endpoints refresh extraction by default. The service stays correct when the
+DB is offline.
 ```
 
 Key design choices (per the assessment's "rule-based reasoning, no LLM"
@@ -122,7 +129,9 @@ Referer: https://secure.simplepractice.com/clients/{hashed_id}/overview
 ```
 
 `SimplePracticeClient` lazy-fetches the CSRF token from the overview HTML on
-the first request and refreshes it on a 401/419. Cookies in HAR files are
+the first request and refreshes it on a 401/419. Timeline extraction follows
+all `/frontend/overview-items` pages and merges JSON:API resources by
+`(type, id)` so older notes are not silently dropped. Cookies in HAR files are
 stripped by Chrome by default, so for live mode the user pastes the cookie
 value into `.env`.
 
@@ -132,7 +141,9 @@ value into `.env`.
 
 Every test in `tests/` (and `make dev` by default) talks to `FixtureBackend`,
 which reads the JSON files in `fixtures/` exactly as they came from
-SimplePractice. The fixtures were materialized by running:
+SimplePractice. Fixture mode validates both the requested hashed id and numeric
+client id so a missing fixture cannot be mislabeled as Jamie's chart. The
+fixtures were materialized by running:
 
 ```bash
 make parse-har HAR=/path/to/secure.simplepractice.com.har
@@ -160,6 +171,39 @@ Tables (single Alembic migration, see `alembic/versions/`):
 
 Cache reads and all writes are best-effort — a missing/dead Postgres never
 breaks the API.
+
+---
+
+## Sample outputs
+
+Fresh sample responses for the simulated patient live in `samples/`:
+
+- `patient_extract.json` - Task 2 structured extract.
+- `asam_assessment.json` - Task 3 ASAM 4th-edition Level of Care output.
+- `tjc_audit.json` - Task 3 Joint Commission CTS audit output.
+
+Regenerate them after extraction or rule changes with:
+
+```bash
+uv run python - <<'PY'
+import asyncio
+from pathlib import Path
+from app.domain.extraction import build_patient_extract
+from app.intelligence.asam import AsamEngine
+from app.intelligence.tjc import TjcEngine
+from app.simplepractice import FixtureBackend
+
+async def main():
+    out = Path("samples")
+    out.mkdir(exist_ok=True)
+    extract = await build_patient_extract(FixtureBackend("fixtures"), "0c39dadff6972e0f")
+    (out / "patient_extract.json").write_text(extract.model_dump_json(indent=2))
+    (out / "asam_assessment.json").write_text(AsamEngine().assess(extract).model_dump_json(indent=2))
+    (out / "tjc_audit.json").write_text(TjcEngine().audit(extract).model_dump_json(indent=2))
+
+asyncio.run(main())
+PY
+```
 
 ---
 

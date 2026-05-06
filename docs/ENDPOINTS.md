@@ -96,12 +96,24 @@ the offline `FixtureBackend` served the data.
 Returns the `patient` sub-document only (everything in the example above
 inside the `patient` key).
 
+Query params:
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `refresh` | bool | `false` | If true, bypass the extraction cache |
+
 ---
 
 ### `GET /api/v1/patients/{hashed_id}/admission-assessment`
 
 Returns the `admission_assessment` sub-document only. 404 if the chart has no
 `thisType=Chart` note that begins with `"Admission Assessment"`.
+
+Query params:
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `refresh` | bool | `false` | If true, bypass the extraction cache |
 
 ---
 
@@ -117,6 +129,12 @@ appointment start time / note `noted_at`. Each entry is one of:
 | `scored_measure` | `note_id`, `title`, `link`, `metadata` |
 | `admission_assessment_ref` | `note_id` (back-pointer to the BPS note) |
 
+Query params:
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `refresh` | bool | `false` | If true, bypass the extraction cache |
+
 ---
 
 ### `POST /api/v1/patients/{hashed_id}/asam`
@@ -129,6 +147,12 @@ Request body (optional):
 ```json
 { "include_text_spans": true }
 ```
+
+Query params:
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `refresh` | bool | `true` | If true, re-fetch extraction before scoring |
 
 Response:
 
@@ -169,7 +193,15 @@ See [docs/ASAM_RULES.md](ASAM_RULES.md) for the rules + LoC matrix.
 
 ### `POST /api/v1/patients/{hashed_id}/tjc-audit`
 
-Runs the curated TJC CTS audit. Response:
+Runs the curated TJC CTS audit.
+
+Query params:
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `refresh` | bool | `true` | If true, re-fetch extraction before auditing |
+
+Response:
 
 ```json
 {
@@ -199,9 +231,9 @@ See [docs/TJC_RULES.md](TJC_RULES.md) for the EP set we audit.
 ## 2. Upstream SimplePractice endpoints (reverse engineered)
 
 All requests go to `https://secure.simplepractice.com` with the headers
-listed in the README. The HAR at
-`/Users/rohan/Downloads/secure.simplepractice.com.har` confirmed every shape
-below; representative fixtures live in `fixtures/`.
+listed in the README. The full HAR at
+`/Users/rohan/Downloads/secure.simplepractice.comFull.har` confirmed the
+JSON:API surface below; representative fixtures live in `fixtures/`.
 
 ### `GET /frontend/treatable-clients/{hashed_id}?filter[findByHashedId]=true`
 
@@ -223,8 +255,9 @@ returns the ordered `data: [{type:"notes"|"appointments", id}]` array plus an
 `included` array carrying full note bodies, intake notes, diagnosis treatment
 plans, and the client itself.
 
-This is the single richest payload — many extracts only need this plus the
-client record.
+This is the single richest payload. The live client follows all available pages
+and merges the JSON:API documents by `(type, id)` so older notes, measures, or
+treatment plan records are not silently omitted.
 
 ### `GET /frontend/appointments/{appointment_id}`
 

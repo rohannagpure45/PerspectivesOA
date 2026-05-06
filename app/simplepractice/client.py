@@ -28,7 +28,7 @@ import httpx
 from bs4 import BeautifulSoup
 
 from app.settings import Settings, get_settings
-from app.simplepractice.jsonapi import Document
+from app.simplepractice.jsonapi import Document, IncludedIndex, Resource
 
 log = logging.getLogger(__name__)
 
@@ -51,7 +51,8 @@ class SimplePracticeBackend(Protocol):
 _DEFAULT_INCLUDE_CLIENT = (
     "clientBillingOverview,billingSettings,emails,phones,addresses,"
     "clientRelationships.relatedClient.emails,clientRelationships.relatedClient.phones,"
-    "clientContacts,insuranceInfos,insuranceInfos.insurancePlan,"
+    "clientRelationships.relatedClient.addresses,clientContacts,insuranceInfos,"
+    "insuranceInfos.insurancePlan,insuranceInfos.primaryPlan,currentInsuranceAuthorization,"
     "upcomingAppointments"
 )
 
@@ -60,19 +61,61 @@ _DEFAULT_INCLUDE_OVERVIEW = (
     "progressNote.noteSignatureOverview,"
     "psychotherapyNote,psychotherapyNote.noteSignatureOverview,"
     "notable,notable.diagnosisTreatmentPlanOverview,"
-    "diagnosisTreatmentPlan.globalDsmCodes"
+    "diagnosisTreatmentPlan.globalDsmCodes,overviewDocuments,"
+    "appointmentClientForOverview.progressNote,goodFaithEstimateOverview,"
+    "globalMonarchChannel,appointmentMemo,client.insuranceCardDocuments"
 )
 
 _DEFAULT_INCLUDE_APPOINTMENT = (
-    "office,client.phones,client.emails,"
-    "progressNote,progressNote.noteSignatureOverview,"
-    "psychotherapyNote,psychotherapyNote.noteSignatureOverview,"
+    "office,client.phones,client.emails,coupleClient,"
+    "overviewDocuments,overviewDocuments.client,"
     "diagnosisTreatmentPlan,diagnosisTreatmentPlan.globalDsmCodes,"
     "diagnosisTreatmentPlan.note.notable,"
-    "complexNote,complexNote.intakeQuestionnaire,"
+    "progressNote,progressNote.noteSignatureOverview,"
+    "progressNote.clientNoteRequests,progressNote.comments.user,"
+    "psychotherapyNote,psychotherapyNote.noteSignatureOverview,"
+    "complexNote,complexNote.intakeQuestionnaire,nextAppointment,previousAppointment,"
+    "wileyTreatmentPlans,"
     "treatmentProgress.diagnosisTreatmentPlan.globalDsmCodes,"
-    "appointmentClients,appointmentMemo,overviewDocuments"
+    "treatmentProgress.treatmentProgressItems,"
+    "appointmentClients,appointmentClients.client.clientRelationships.relatedClient,"
+    "appointmentClients.progressNote.noteSignatureOverview,"
+    "appointmentClients.complexNote.intakeQuestionnaire,"
+    "appointmentClients.client.phones,appointmentClients.client.emails,"
+    "appointmentClients.client.insuranceInfos,appointmentClients.appointmentCheck,"
+    "appointmentMemo,globalMonarchChannel"
 )
+
+_DEFAULT_FIELDS_OVERVIEW: dict[str, str] = {
+    "fields[appointments]": (
+        "cursorId,startTime,endTime,fullDay,attendanceStatus,cptCodes,clinician,"
+        "progressNote,psychotherapyNote,overviewDocuments,permissions,rankNum,"
+        "appointmentMemo,globalMonarchChannel"
+    ),
+    "fields[groupAppointments]": (
+        "progressNote,hasGroupNote,hasNoteSignature,appointmentClientForOverview,"
+        "cursorId,startTime,endTime,fullDay,cptCodes,clinician,permissions,rankNum,"
+        "thisType,overviewDocuments,appointmentMemo,globalMonarchChannel"
+    ),
+    "fields[intakeNotes]": "id,completedBy,isMeasure",
+    "fields[diagnosisTreatmentPlanCustoms]": (
+        "client,recipient,note,previousTreatmentPlan,closestDiagnosisTreatmentPlan,"
+        "intakeQuestionnaire,diagnosisTreatmentPlanOverview,draftAiTreatmentPlan,"
+        "permissions,thisType,frequency,notedAt,hasDetails,problem,goal,"
+        "formattedGoal,objective,formattedObjective,reminderOption,reminderAfterPeriod,"
+        "reminderOnDate,structure,source"
+    ),
+    "fields[clients]": "id,insuranceCardDocuments",
+    "fields[assessments]": "id,permissions",
+    "fields[mentalStatusExams]": "id",
+    "fields[documents]": "name,documentMimeType",
+    "fields[goodFaithEstimates]": (
+        "id,dateProvided,expirationDate,permissions,submissionData,user,goodFaithEstimateOverview,cursorId"
+    ),
+    "fields[goodFaithEstimateOverviews]": "isLocked,isEditable",
+    "fields[globalMonarchChannels]": "name",
+    "fields[inquiriesNotes]": "id,cursorId,client,content,createdByUser,updatedByUser,createdAt,updatedAt",
+}
 
 
 class SimplePracticeClient(SimplePracticeBackend):
@@ -158,6 +201,23 @@ class SimplePracticeClient(SimplePracticeBackend):
             return Document.from_dict(r.json())
         raise RuntimeError(f"SP_API_GET exhausted retries: {path}")
 
+    @staticmethod
+    def _merge_documents(pages: list[Document]) -> Document:
+        if not pages:
+            return Document(data=[], included=IncludedIndex())
+        merged_data: list[Resource] = []
+        seen_primary: set[tuple[str, str]] = set()
+        included = IncludedIndex()
+        for page in pages:
+            for resource in page.primary_list():
+                key = (resource.type, resource.id)
+                if key not in seen_primary:
+                    seen_primary.add(key)
+                    merged_data.append(resource)
+            included.extend(page.included)
+        last = pages[-1]
+        return Document(data=merged_data, included=included, meta=last.meta, links=last.links)
+
     # ------------------------------------------------------------------
     # Public surface
     # ------------------------------------------------------------------
@@ -178,14 +238,40 @@ class SimplePracticeClient(SimplePracticeBackend):
         )
 
     async def get_overview_items(self, numeric_id: str, page_size: int = 20) -> Document:
-        return await self._api_get(
-            "/frontend/overview-items",
-            params={
-                "filter[clientId]": numeric_id,
-                "include": _DEFAULT_INCLUDE_OVERVIEW,
-                "page[size]": str(page_size),
-            },
-        )
+        base_params = {
+            "filter[clientId]": numeric_id,
+            "include": _DEFAULT_INCLUDE_OVERVIEW,
+            "page[size]": str(page_size),
+            **_DEFAULT_FIELDS_OVERVIEW,
+        }
+        pages: list[Document] = []
+        seen_page_signatures: set[tuple[tuple[str, str], ...]] = set()
+        page_number = 1
+        next_url: str | None = None
+
+        while True:
+            if next_url:
+                page = await self._api_get(next_url)
+            else:
+                params = {**base_params, "page[number]": str(page_number)}
+                page = await self._api_get("/frontend/overview-items", params=params)
+
+            primary = page.primary_list()
+            signature = tuple((resource.type, resource.id) for resource in primary)
+            if signature in seen_page_signatures:
+                break
+            seen_page_signatures.add(signature)
+            pages.append(page)
+
+            next_link = page.links.get("next")
+            next_url = next_link if isinstance(next_link, str) and next_link else None
+            if next_url:
+                continue
+            if len(primary) < page_size:
+                break
+            page_number += 1
+
+        return self._merge_documents(pages)
 
     async def get_appointment(self, appointment_id: str) -> Document:
         return await self._api_get(

@@ -1,0 +1,324 @@
+{
+  "asam_edition": "4th",
+  "rules_version": "asam-4e-rules-v1",
+  "dimensions": [
+    {
+      "id": 1,
+      "name": "Acute Intoxication and/or Withdrawal Potential",
+      "short_name": "intoxication_withdrawal",
+      "risk_rating": 2,
+      "raw_score": 2,
+      "rationale": "Dimension rated 2 (moderate). Driving evidence: “mild morning tremors and nausea”; “mild morning tremors”; “mild morning tremors and nausea”.",
+      "evidence": [
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "mild morning tremors and nausea",
+          "span": "rs on weekends a year ago. The patient reports experiencing mild morning tremors and nausea (mild withdrawal symptoms) if they do not drink the night b",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925826179",
+          "matched_phrase": "mild morning tremors",
+          "span": "ers in a single evening. The client continues to experience mild morning tremors when alcohol intake is reduced. Jamie disclosed that their",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "mild morning tremors and nausea",
+          "span": "e. The client is consuming 6 to 8 beers per day and reports mild morning tremors and nausea on days when alcohol intake is reduced. Jamie expressed a s",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "physiological dependence",
+          "span": "client’s mild withdrawal symptoms (tremors, nausea) suggest physiological dependence and require monitoring. Based on ASAM criteria, the client",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "6 to 8 beers daily",
+          "span": "last month. Substance Use History: Jamie reports consuming 6 to 8 beers daily, typically beginning immediately after work. This is an inc",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "6 to 8 beers per",
+          "span": "ress following a management change. The client is consuming 6 to 8 beers per day and reports mild morning tremors and nausea on days whe",
+          "tier": "mild"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Biomedical Conditions and Complications",
+      "short_name": "biomedical",
+      "risk_rating": 0,
+      "raw_score": -1,
+      "rationale": "Dimension scored 0 — protective indicators dominate: “Vitals are stable”, “No acute biomedical conditions”.",
+      "evidence": [
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "Vitals are stable",
+          "span": "cal conditions requiring immediate inpatient stabilization. Vitals are stable. Fall Risk: Low. Living Environment: Lives with a support",
+          "tier": "protective"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "No acute biomedical conditions",
+          "span": "intent, or plan. Denies homicidal ideation. Medical Risk: No acute biomedical conditions requiring immediate inpatient stabilization. Vitals are sta",
+          "tier": "protective"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Emotional, Behavioral, or Cognitive Conditions and Complications",
+      "short_name": "emotional_behavioral",
+      "risk_rating": 3,
+      "raw_score": 3,
+      "rationale": "Dimension rated 3 (severe). Driving evidence: “daily panic attacks”; “daily panic attacks”; “impending doom”.",
+      "evidence": [
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "daily panic attacks",
+          "span": "ss recently peaked after a change in management, leading to daily panic attacks characterized by palpitations, shortness of breath, and a f",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "daily panic attacks",
+          "span": "y session. Client reported significant ongoing anxiety with daily panic attacks, describing palpitations, shortness of breath, and a pervas",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "impending doom",
+          "span": "ized by palpitations, shortness of breath, and a feeling of impending doom. To cope with the anxiety, the patient has begun isolating",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "impending doom",
+          "span": "palpitations, shortness of breath, and a pervasive sense of impending doom. Jamie noted that their alcohol consumption has escalated m",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "called out sick four times",
+          "span": "nificantly impacting their occupational functioning, having called out sick four times in the last month. Substance Use History: Jamie reports co",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "functional impairment",
+          "span": "Outpatient Program (IOP, Level 2.1) given withdrawal risk, functional impairment, and coping deficits. Strengths include internal motivation",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "co-occurring Generalized Anxiety",
+          "span": "t setting. ### Assessment Assessment Jamie presents with co-occurring Generalized Anxiety Disorder (GAD) and Alcohol Use Disorder (AUD) of moderate s",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "isolating from friends",
+          "span": "nding doom. To cope with the anxiety, the patient has begun isolating from friends and family. The patient notes that their emotional distress",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925826179",
+          "matched_phrase": "Generalized Anxiety Disorder",
+          "span": "ment Jamie presents with moderate Alcohol Use Disorder and Generalized Anxiety Disorder that are closely intertwined; anxiety triggers craving, and",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "Generalized Anxiety Disorder",
+          "span": "## Assessment Assessment Jamie presents with co-occurring Generalized Anxiety Disorder (GAD) and Alcohol Use Disorder (AUD) of moderate severity.",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "Denies homicidal ideation",
+          "span": "y current or historical suicidal ideation, intent, or plan. Denies homicidal ideation. Medical Risk: No acute biomedical conditions requiring im",
+          "tier": "protective"
+        },
+        {
+          "source_note_id": "925826179",
+          "matched_phrase": "good insight",
+          "span": "deepening long-term dysregulation. The client demonstrates good insight but ambivalence regarding ability to tolerate anxiety witho",
+          "tier": "protective"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Readiness to Change",
+      "short_name": "readiness_to_change",
+      "risk_rating": 2,
+      "raw_score": 2,
+      "rationale": "Dimension rated 2 (moderate). Driving evidence: “ambivalence regarding”; “uncertainty about tolerating anxiety”; “feel overwhelmed by the prospect”.",
+      "evidence": [
+        {
+          "source_note_id": "925826179",
+          "matched_phrase": "ambivalence regarding",
+          "span": "erm dysregulation. The client demonstrates good insight but ambivalence regarding ability to tolerate anxiety without substance use. Risk for",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "uncertainty about tolerating anxiety",
+          "span": "duced. Jamie expressed a strong desire to change but voiced uncertainty about tolerating anxiety without the use of alcohol. The client denied suicidal idea",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "feel overwhelmed by the prospect",
+          "span": "expressing a strong internal desire to change, though they feel overwhelmed by the prospect of managing anxiety without alcohol.",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "strong internal desire to change",
+          "span": "ive impact of their substance use and anxiety, expressing a strong internal desire to change, though they feel overwhelmed by the prospect of managing a",
+          "tier": "protective"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "strong desire to change",
+          "span": "a on days when alcohol intake is reduced. Jamie expressed a strong desire to change but voiced uncertainty about tolerating anxiety without the",
+          "tier": "protective"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "recognizes the negative impact",
+          "span": "no firearms in the home. Treatment Readiness: The patient recognizes the negative impact of their substance use and anxiety, expressing a strong int",
+          "tier": "protective"
+        },
+        {
+          "source_note_id": "925826179",
+          "matched_phrase": "good insight",
+          "span": "deepening long-term dysregulation. The client demonstrates good insight but ambivalence regarding ability to tolerate anxiety witho",
+          "tier": "protective"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Relapse, Continued Use, or Continued Problem Potential",
+      "short_name": "relapse_potential",
+      "risk_rating": 2,
+      "raw_score": 2,
+      "rationale": "Dimension rated 2 (moderate). Driving evidence: “unsuccessful due to intense cravings”; “intense cravings”; “rebound anxiety”.",
+      "evidence": [
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "unsuccessful due to intense cravings",
+          "span": "ted to cut down on drinking twice in the past month but was unsuccessful due to intense cravings and rebound anxiety. The patient denies any history of illi",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "intense cravings",
+          "span": "rinking twice in the past month but was unsuccessful due to intense cravings and rebound anxiety. The patient denies any history of illi",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "rebound anxiety",
+          "span": "past month but was unsuccessful due to intense cravings and rebound anxiety. The patient denies any history of illicit drug use or pres",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925826179",
+          "matched_phrase": "rebound anxiety",
+          "span": "cohol feedback loop. Explore coping strategies for managing rebound anxiety without alcohol (e.g., diaphragmatic breathing, grounding t",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "rebound anxiety",
+          "span": "hol use disrupts neurobiological regulation and exacerbates rebound anxiety. The client’s mild withdrawal symptoms (tremors, nausea) su",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "escalating alcohol consumption",
+          "span": "esenting with worsening symptoms of generalized anxiety and escalating alcohol consumption over the past six months. Jamie reports that work-related s",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "craving",
+          "span": "twice in the past month but was unsuccessful due to intense cravings and rebound anxiety. The patient denies any history of ill",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925826179",
+          "matched_phrase": "craving",
+          "span": "ety Disorder that are closely intertwined; anxiety triggers craving, and alcohol use temporarily suppresses anxiety while deepe",
+          "tier": "mild"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "period of abstinence",
+          "span": "icit drug use or prescription medication misuse. A previous period of abstinence was achieved three years ago for approximately six months w",
+          "tier": "protective"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "six months without",
+          "span": "f abstinence was achieved three years ago for approximately six months without formal treatment. Initial Risk Screening: Suicidal/Homici",
+          "tier": "protective"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Recovery/Living Environment",
+      "short_name": "recovery_environment",
+      "risk_rating": 1,
+      "raw_score": 1,
+      "rationale": "Dimension rated 1 (mild). Driving evidence: “partner has expressed significant frustration”.",
+      "evidence": [
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "partner has expressed significant frustration",
+          "span": "ng Environment: Lives with a supportive partner, though the partner has expressed significant frustration and boundary-setting regarding Jamie’s recent drinking beha",
+          "tier": "moderate"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "supportive partner",
+          "span": "stable. Fall Risk: Low. Living Environment: Lives with a supportive partner, though the partner has expressed significant frustration a",
+          "tier": "protective"
+        },
+        {
+          "source_note_id": "925740422",
+          "matched_phrase": "supportive partner",
+          "span": "e internal motivation for change and a (currently strained) supportive partner relationship. ### Plan Plan Establish therapeutic allian",
+          "tier": "protective"
+        },
+        {
+          "source_note_id": "925838931",
+          "matched_phrase": "no firearms in the home",
+          "span": "ting regarding Jamie’s recent drinking behaviors. There are no firearms in the home. Treatment Readiness: The patient recognizes the negative",
+          "tier": "protective"
+        }
+      ]
+    }
+  ],
+  "recommended_level_of_care": {
+    "code": "2.1",
+    "name": "Intensive Outpatient (IOP)",
+    "rationale": "Mild withdrawal risk plus reinforcing emotional/relapse load (dims 3, 1, 4) maps to IOP-level structure.",
+    "drivers": [
+      3,
+      1,
+      4
+    ]
+  },
+  "computed_at": "2026-05-06T17:53:28.020240Z",
+  "text_corpus_size": 6916
+}

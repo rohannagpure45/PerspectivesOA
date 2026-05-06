@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 
 from app.api.extraction import BackendDep, _get_extract
 from app.api.schemas import AuditRequest
@@ -25,8 +25,9 @@ async def post_asam(
     hashed_id: str,
     backend: BackendDep,
     request: AuditRequest | None = None,
+    refresh: bool = Query(default=True, description="Bypass extraction cache before scoring"),
 ) -> AsamAssessment:
-    extract = await _get_extract(backend, hashed_id, refresh=False)
+    extract = await _get_extract(backend, hashed_id, refresh=refresh)
     if extract.admission_assessment is None and not extract.timeline:
         raise HTTPException(status_code=422, detail="No clinical text available to score.")
     assessment = _asam_engine.assess(extract)
@@ -45,8 +46,9 @@ async def post_tjc_audit(
     hashed_id: str,
     backend: BackendDep,
     request: AuditRequest | None = None,
+    refresh: bool = Query(default=True, description="Bypass extraction cache before auditing"),
 ) -> TjcAuditReport:
-    extract = await _get_extract(backend, hashed_id, refresh=False)
+    extract = await _get_extract(backend, hashed_id, refresh=refresh)
     report = _tjc_engine.audit(extract)
     if request and not request.include_text_spans:
         for f in report.findings:
