@@ -1,0 +1,831 @@
+{
+  "data": {
+    "id": "3505428529",
+    "type": "appointments",
+    "attributes": {
+      "fullDay": "false",
+      "permissions": "{\"billing\":true,\"showDetails\":true,\"edit\":true,\"editScheduling\":false,\"editDetails\":false,\"editTime\":false,\"editStatus\":false,\"editTeamMember\":true,\"treatment\":true,\"destroy\":false,\"showOnCalendar\":true,\"treatmentProgress\":true,\"createTreatmentProgress\":true,\"adminStaffDocsAccess\":false,\"showNotes\":true,\"noteTaker\":false,\"viewDraftAiNote\":false,\"postSessionSummary\":false}",
+      "thisType": "Appointment",
+      "title": "Jamie D. Appleseed",
+      "startTime": "2026-05-03T13:00:00-05:00",
+      "endTime": "2026-05-03T14:00:00-05:00",
+      "isRecurring": "false",
+      "recurrence": null,
+      "recurringSchedule": "Not repeating",
+      "cursorId": "eyJfcmFpbHMiOnsiZGF0YSI6ImdpZDovL3NpbXBsZS1wcmFjdGljZS9BcHBvaW50bWVudC8zNTA1NDI4NTI5IiwiZXhwIjoiMjAyNi0wNi0wNlQxNjoxMzoxNC4xMTVaIiwicHVyIjoiZGVmYXVsdCJ9fQ==--d2316c588a2a44db68953f7944c948f084e93748",
+      "appointmentMemoAttributes": null,
+      "alertMinutes": 15,
+      "duration": 60,
+      "attendanceStatus": "Show",
+      "officeName": null,
+      "officeId": null,
+      "copay": 0.0,
+      "billingType": "Self-pay",
+      "isBillingLedgerEnabled": "true",
+      "isBillingTimelineEnabled": "true",
+      "videoRoomUrl": null,
+      "videoRoomWithAuthUrl": null,
+      "clinicianId": 2045309,
+      "isLocked": "true",
+      "lockedReasons": "[{\"showOnFilterableAction\":\"delete\",\"accessible\":true,\"prefix\":\"A\",\"reason\":\"progress note\",\"text\":\"The clinician who created the progress note must delete it before the appointment can be\",\"linkTo\":{\"route\":\"appointments.show\",\"models\":[3505428529]}},{\"showOnFilterableAction\":\"delete\",\"accessible\":true,\"prefix\":\"A\",\"reason\":\"psychotherapy note\",\"text\":\"The clinician who created the psychotherapy note must delete it before the appointment can be\",\"linkTo\":{\"route\":\"appointments.show\",\"models\":[3505428529]}},{\"showOnFilterableAction\":\"all\",\"accessible\":true,\"prefix\":\"A\",\"reason\":\"superbill\",\"text\":\"Someone with billing access must delete the superbill before the appointment can be\",\"linkTo\":{\"route\":\"calendar.appointments.show.superbill\",\"models\":[3505428529,74445728]}},{\"showOnFilterableAction\":\"all\",\"accessible\":true,\"prefix\":\"An\",\"reason\":\"invoice\",\"text\":\"Someone with billing or scheduling access must delete the invoice before the appointment can be\",\"linkTo\":{\"route\":\"calendar.appointments.show.invoice\",\"models\":[3505428529,762489647]}}]",
+      "rankNum": null,
+      "visibility": "visible",
+      "hasNote": "true",
+      "hasPsychotherapyNote": "true",
+      "hasNoteSignature": "false",
+      "clientConfirmationStatus": null,
+      "hasSuperbill": "true",
+      "channelName": null,
+      "channelLogo": null,
+      "fee": 100.0,
+      "isFirstChannelAppointmentForClient": "false",
+      "isFirstCompsychAppointment": "false",
+      "clientChargeAmount": 100.0,
+      "billableDescription": "Professional Services",
+      "cptCodes": [
+        {
+          "code": "90834",
+          "ratePerUnit": "100.0",
+          "rate": null,
+          "description": "Psychotherapy, 45 min",
+          "numberOfUnits": 1,
+          "unitBillingEnabled": false,
+          "benefitChecksSupported": false,
+          "hashedId": "af7cce9b",
+          "modifierOne": null,
+          "modifierTwo": null,
+          "modifierThree": null,
+          "modifierFour": null
+        }
+      ],
+      "writeOffClient": 0.0,
+      "isCoveredByChannel": "false",
+      "isFirstChannelAppointmentForClinician": "false",
+      "invoiceItemsPriceSum": 100.0,
+      "managedByManagedBilling": "false",
+      "needsBillingAction": "true",
+      "insuranceCharge": 0.0,
+      "totalWriteOff": 0.0,
+      "insuranceAmountPaid": 0.0,
+      "insuranceBalance": 0.0,
+      "sendDeclineEmail": "true",
+      "sendAcceptEmail": "true"
+    },
+    "relationships": {
+      "practice": {
+        "data": {
+          "type": "practices",
+          "id": "1308058"
+        }
+      },
+      "clinician": {
+        "data": {
+          "type": "teamMembers",
+          "id": "2045309"
+        }
+      },
+      "progressNote": {
+        "data": {
+          "type": "notes",
+          "id": "925740420"
+        }
+      },
+      "client": {
+        "data": {
+          "type": "clients",
+          "id": "106612410"
+        }
+      },
+      "office": {
+        "data": null
+      },
+      "recurringAppointment": {
+        "data": null
+      },
+      "coupleClient": {
+        "data": null
+      },
+      "superbill": {
+        "data": {
+          "type": "superbills",
+          "id": "74445728"
+        }
+      },
+      "globalMonarchChannel": {
+        "data": null
+      },
+      "appointmentClients": {
+        "data": [
+          {
+            "type": "appointmentClients",
+            "id": "1430500203"
+          }
+        ]
+      },
+      "appointmentMemo": {
+        "data": null
+      },
+      "overviewDocuments": {
+        "data": []
+      },
+      "wileyTreatmentPlans": {
+        "data": []
+      },
+      "treatmentProgress": {
+        "data": null
+      },
+      "psychotherapyNote": {
+        "data": {
+          "type": "notes",
+          "id": "925740421"
+        }
+      },
+      "diagnosisTreatmentPlan": {
+        "data": {
+          "type": "diagnosisTreatmentPlans",
+          "id": "44188318"
+        }
+      },
+      "complexNote": {
+        "data": {
+          "type": "complexNotes",
+          "id": "334272929"
+        }
+      },
+      "previousAppointment": {
+        "data": null
+      },
+      "nextAppointment": {
+        "data": {
+          "type": "appointments",
+          "id": "3505428542"
+        }
+      }
+    },
+    "meta": {
+      "hasMemo": false,
+      "futureAppointmentsCount": 3,
+      "documentsCount": 0
+    }
+  },
+  "included": [
+    {
+      "id": "3505428542",
+      "type": "appointments",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/appointments/3505428542"
+      },
+      "attributes": {
+        "fullDay": "false",
+        "permissions": "{\"billing\":true,\"showDetails\":true,\"edit\":true,\"editScheduling\":true,\"editDetails\":false,\"editTime\":true,\"editStatus\":false,\"editTeamMember\":true,\"treatment\":true,\"destroy\":false,\"showOnCalendar\":true,\"treatmentProgress\":true,\"createTreatmentProgress\":true,\"adminStaffDocsAccess\":false,\"showNotes\":true,\"noteTaker\":false,\"viewDraftAiNote\":false,\"postSessionSummary\":false}",
+        "thisType": "Appointment",
+        "title": "Jamie D. Appleseed",
+        "startTime": "2026-05-04T14:00:00-05:00",
+        "endTime": "2026-05-04T15:00:00-05:00",
+        "isRecurring": "false",
+        "recurrence": null,
+        "recurringSchedule": "Not repeating",
+        "cursorId": "eyJfcmFpbHMiOnsiZGF0YSI6ImdpZDovL3NpbXBsZS1wcmFjdGljZS9BcHBvaW50bWVudC8zNTA1NDI4NTQyIiwiZXhwIjoiMjAyNi0wNi0wNlQxNjoxMzoxNC4zNjRaIiwicHVyIjoiZGVmYXVsdCJ9fQ==--fe1e2ef48bfd76c70d9020feff42cf1232f6109c",
+        "appointmentMemoAttributes": null,
+        "alertMinutes": 15,
+        "duration": 60,
+        "attendanceStatus": "Show",
+        "officeName": null,
+        "officeId": null,
+        "copay": 0.0,
+        "billingType": "Self-pay",
+        "isBillingLedgerEnabled": "true",
+        "isBillingTimelineEnabled": "true",
+        "videoRoomUrl": null,
+        "videoRoomWithAuthUrl": null,
+        "clinicianId": 2045309,
+        "rankNum": null,
+        "hasNote": "true",
+        "hasPsychotherapyNote": "true",
+        "hasNoteSignature": "false",
+        "clientConfirmationStatus": null,
+        "hasSuperbill": "false",
+        "channelName": null,
+        "channelLogo": null,
+        "clientPaidStatus": 0,
+        "fee": 100.0,
+        "isFirstChannelAppointmentForClient": "false",
+        "isFirstCompsychAppointment": "false",
+        "clientChargeAmount": 100.0,
+        "billableDescription": "Professional Services",
+        "cptCodes": [
+          {
+            "code": "90834",
+            "ratePerUnit": "100.0",
+            "rate": null,
+            "description": "Psychotherapy, 45 min",
+            "numberOfUnits": 1,
+            "unitBillingEnabled": false,
+            "benefitChecksSupported": false,
+            "hashedId": "46f922a8",
+            "modifierOne": null,
+            "modifierTwo": null,
+            "modifierThree": null,
+            "modifierFour": null
+          }
+        ],
+        "writeOffClient": 0.0,
+        "isCoveredByChannel": "false",
+        "isFirstChannelAppointmentForClinician": "false",
+        "invoiceItemsPriceSum": 100.0,
+        "managedByManagedBilling": "false",
+        "needsBillingAction": "true",
+        "insuranceCharge": 0.0,
+        "totalWriteOff": 0.0,
+        "insuranceAmountPaid": 0.0,
+        "insuranceBalance": 0.0,
+        "sendDeclineEmail": "true",
+        "sendAcceptEmail": "true"
+      },
+      "relationships": {
+        "practice": {
+          "data": {
+            "type": "practices",
+            "id": "1308058"
+          }
+        },
+        "clinician": {
+          "data": {
+            "type": "teamMembers",
+            "id": "2045309"
+          }
+        },
+        "client": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        },
+        "office": {
+          "data": null
+        },
+        "recurringAppointment": {
+          "data": null
+        },
+        "superbill": {
+          "data": null
+        }
+      },
+      "meta": {
+        "hasMemo": false
+      }
+    },
+    {
+      "id": "925740420",
+      "type": "notes",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/notes/925740420"
+      },
+      "attributes": {
+        "cursorId": "eyJfcmFpbHMiOnsiZGF0YSI6ImdpZDovL3NpbXBsZS1wcmFjdGljZS9Ob3RlLzkyNTc0MDQyMCIsImV4cCI6IjIwMjYtMDYtMDZUMTY6MTM6MTQuMTIzWiIsInB1ciI6ImRlZmF1bHQifX0=--a5b211624e07717e643762a0e06f85479f971029",
+        "thisType": "Progress",
+        "title": "Data, Subjective, Assessment, Plan.",
+        "text": "### data\n\ndata on jamie app. 1[Insert suggested response] \n\n### subjective\n\n[Insert suggested response] for subjective\n\n### assessment\n\nassessment for jamie app 1. [Insert suggested response]\n\n### plan\n\nplan for app1 [Insert suggested response]",
+        "formattedText": "<h3 id=\"data\">data</h3>\n\n<p>data on jamie app. 1[Insert suggested response]</p>\n\n<h3 id=\"subjective\">subjective</h3>\n\n<p>[Insert suggested response] for subjective</p>\n\n<h3 id=\"assessment\">assessment</h3>\n\n<p>assessment for jamie app 1. [Insert suggested response]</p>\n\n<h3 id=\"plan\">plan</h3>\n\n<p>plan for app1 [Insert suggested response]</p>\n",
+        "notedAt": "2026-05-05T16:11:26-05:00",
+        "lockedAt": null,
+        "createdAt": "2026-05-05T16:11:26-05:00",
+        "updatedAt": "2026-05-05T17:45:21-05:00",
+        "updatedBy": "Rohan Nagpure",
+        "isMeasure": "false",
+        "managedBillingClaimResult": "hidden",
+        "contentFingerprint": "6c1537d7b5202cc4e06e8426f82427bae48f006202ae32f829d43b2ca366d96e",
+        "permissions": "{\"show\":true,\"edit\":true,\"destroy\":true}"
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "type": "teamMembers",
+            "id": "2045309"
+          }
+        },
+        "noteSignatureOverview": {
+          "data": {
+            "type": "noteSignatureOverviews",
+            "id": "925740420"
+          }
+        },
+        "clientNoteRequests": {
+          "data": []
+        },
+        "comments": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": "925740421",
+      "type": "notes",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/notes/925740421"
+      },
+      "attributes": {
+        "cursorId": "eyJfcmFpbHMiOnsiZGF0YSI6ImdpZDovL3NpbXBsZS1wcmFjdGljZS9Ob3RlLzkyNTc0MDQyMSIsImV4cCI6IjIwMjYtMDYtMDZUMTY6MTM6MTQuMjA0WiIsInB1ciI6ImRlZmF1bHQifX0=--552e58e06adabb90d20d1296da6a2fd6b0404eda",
+        "thisType": "Psychotherapy",
+        "title": "Psychotherapy Note",
+        "text": "Dream Imagery--journey to an unknown destination with a group of familiar and unfamiliar people, mountains, sunflowers, a dance party. He expressed feeling guilty over past arguments with his sister and being dismissive of his when they were children. Stirred feelings in me of loss of my mother and my own adjustment issues and feelings of guilt.",
+        "formattedText": "<p>Dream Imagery–journey to an unknown destination with a group of familiar and unfamiliar people, mountains, sunflowers, a dance party. He expressed feeling guilty over past arguments with his sister and being dismissive of his when they were children. Stirred feelings in me of loss of my mother and my own adjustment issues and feelings of guilt.</p>\n",
+        "notedAt": "2026-05-05T16:11:26-05:00",
+        "lockedAt": null,
+        "createdAt": "2026-05-05T16:11:26-05:00",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "updatedBy": "Rohan Nagpure",
+        "isMeasure": "false",
+        "managedBillingClaimResult": "hidden",
+        "contentFingerprint": "",
+        "permissions": "{\"show\":true,\"edit\":true,\"destroy\":true}"
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "type": "teamMembers",
+            "id": "2045309"
+          }
+        },
+        "noteSignatureOverview": {
+          "data": {
+            "type": "noteSignatureOverviews",
+            "id": "925740421"
+          }
+        }
+      }
+    },
+    {
+      "id": "925740417",
+      "type": "notes",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/notes/925740417"
+      },
+      "attributes": {
+        "cursorId": "eyJfcmFpbHMiOnsiZGF0YSI6ImdpZDovL3NpbXBsZS1wcmFjdGljZS9Ob3RlLzkyNTc0MDQxNyIsImV4cCI6IjIwMjYtMDYtMDZUMTY6MTM6MTQuMjM4WiIsInB1ciI6ImRlZmF1bHQifX0=--7abafb26bc8b33ba20d9b097bfbbb08673fc216d",
+        "thisType": "DiagnosisTreatmentPlan",
+        "title": "Diagnosis and treatment plan",
+        "text": "F41.9 - Anxiety disorder, unspecified\n\nF43.22 - Adjustment disorder with anxiety",
+        "formattedText": "<p>F41.9 - Anxiety disorder, unspecified</p>\n\n<p>F43.22 - Adjustment disorder with anxiety</p>\n",
+        "notedAt": "2026-05-03T12:59:00-05:00",
+        "lockedAt": null,
+        "createdAt": "2026-05-05T16:11:26-05:00",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "updatedBy": "Rohan Nagpure",
+        "isMeasure": "false",
+        "managedBillingClaimResult": "hidden",
+        "contentFingerprint": "",
+        "permissions": "{\"show\":true,\"edit\":true,\"destroy\":true}"
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "type": "teamMembers",
+            "id": "2045309"
+          }
+        },
+        "notable": {
+          "data": {
+            "type": "diagnosisTreatmentPlans",
+            "id": "44188318"
+          }
+        }
+      }
+    },
+    {
+      "id": "925740420",
+      "type": "noteSignatureOverviews",
+      "attributes": {
+        "allSignatures": "[]",
+        "potentialSignature": "{\"title\":\"Preview\",\"name\":\"Rohan Nagpure\",\"credentials\":\"\",\"isPrelicensed\":false,\"actionType\":\"Sign and lock\"}",
+        "statuses": "[\"Edited by Rohan Nagpure on May 5, 2026 at 5:45 pm.\"]",
+        "isComplex": "true",
+        "isComplexOutdated": "false",
+        "lastNoteSignatureId": null,
+        "permissions": "{\"edit\":true,\"destroy\":true,\"unlock\":true,\"sign\":false,\"share\":false,\"lock\":true,\"comment\":false}"
+      }
+    },
+    {
+      "id": "925740421",
+      "type": "noteSignatureOverviews",
+      "attributes": {
+        "allSignatures": "[]",
+        "potentialSignature": "{\"title\":\"Preview\",\"name\":\"Rohan Nagpure\",\"credentials\":\"\",\"isPrelicensed\":false,\"actionType\":\"Sign and lock\"}",
+        "statuses": "[\"Created by Rohan Nagpure on May 5, 2026 at 4:11 pm.\"]",
+        "isComplex": "false",
+        "isComplexOutdated": "false",
+        "lastNoteSignatureId": null,
+        "permissions": "{\"edit\":true,\"destroy\":true,\"unlock\":false,\"sign\":false,\"share\":false,\"lock\":false,\"comment\":false}"
+      }
+    },
+    {
+      "id": "106612410",
+      "type": "clients",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/clients/106612410"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "permissions": "{\"billings\":true,\"clientFiles\":true,\"coverageReports\":true,\"destroy\":true,\"documentRequests\":true,\"edit\":true,\"editBilling\":true,\"editClinician\":true,\"editDiagnosis\":false,\"insuranceCards\":true,\"insuranceClaims\":true,\"medications\":null,\"messagingWith\":true,\"newChartNote\":true,\"newClientAdminNote\":true,\"newDiagnosisTreatmentPlan\":true,\"newDocument\":true,\"newGoodFaithEstimate\":true,\"nonBillerDocumentRequests\":true,\"show\":true,\"showMeasures\":true,\"superbills\":true,\"treatment\":true,\"editAccess\":true,\"showAccess\":true,\"manageMedications\":null}",
+        "hashedId": "0c39dadff6972e0f",
+        "name": "Jamie D. Appleseed",
+        "firstName": "Jamie",
+        "lastName": "Appleseed",
+        "middleName": "Demo",
+        "initials": "JA",
+        "suffix": null,
+        "nickname": null,
+        "preferredName": "Jamie D. Appleseed",
+        "legalName": "Jamie Appleseed",
+        "genderInfo": null,
+        "sex": null,
+        "status": "active",
+        "birthDate": "2025-10-31",
+        "coveragePauseDate": null,
+        "primaryInsuranceInfoUpdatedAfterCoveragePause": "false",
+        "createdAt": "2026-05-05T16:11:26-05:00",
+        "ignoredForMerge": "false",
+        "enableUpcomingAppointmentsReminders": "false",
+        "enableIncompleteDocumentsReminders": "false",
+        "enableCanceledAppointmentReminders": "false",
+        "defaultPhoneNumber": "6093756850",
+        "defaultEmailAddress": "nagpure.r@northeastern.edu",
+        "generalNotes": null,
+        "reminderEmailAttributes": null,
+        "reminderPhoneAttributes": null,
+        "documentReminderPhoneAttributes": null,
+        "documentReminderEmailAttributes": null,
+        "reminderCanceledAppointmentEmailAttributes": null,
+        "reminderCanceledAppointmentPhoneAttributes": null,
+        "clientRelationshipsAttributes": null,
+        "billingSettingsAttributes": null,
+        "insuranceAuthorizationsAttributes": null,
+        "currentInsuranceAuthorizationAttributes": null,
+        "cptCodeRatesAttributes": null,
+        "insuranceClaimFieldsAttributes": null,
+        "inActiveTreatment": "true",
+        "secondaryClinicianIds": "[]",
+        "billingType": "Self-pay",
+        "billingTypeGroupAppt": "Self-pay",
+        "insuranceBillingSubtype": null,
+        "documentGenerateStatements": "false",
+        "documentGenerateSuperbills": "false",
+        "dateFirstVisit": "2026-05-06T00:00:00-05:00",
+        "grantedUsers": "[2045309]",
+        "timeZone": "Central Time (US & Canada)",
+        "missingInsuranceData": "{}",
+        "enhancedDataProtection": "false",
+        "revokedAdminIds": "[]",
+        "hasPendingInsuranceInfoRequest": "false",
+        "hasPendingClinicianInsuranceInfoReview": "false",
+        "viaClinicianReferral": null,
+        "referringUserFirstName": null,
+        "referringUserLastName": null,
+        "enrollmentStatusForPayer": null,
+        "contactMethod": null,
+        "sendScheduleLinkVisible": "true",
+        "isAutopayEnabled": "false",
+        "billingZipcode": "12345",
+        "defaultPaymentMethod": "Cash",
+        "isMinor": "false",
+        "relationshipStatus": null,
+        "employmentStatus": null,
+        "raceEthnicities": [],
+        "raceEthnicityDetails": null,
+        "preferredLanguage": null,
+        "enableEmailReminders": "false",
+        "enableOutstandingDocumentReminders": "false",
+        "outstandingDocumentRemindersEnabled": "false",
+        "enableSmsvoiceReminders": "0",
+        "reminderCanceledAppointmentPhoneType": null,
+        "enableSmsOutstandingDocumentReminders": "false"
+      },
+      "relationships": {
+        "clinician": {
+          "data": {
+            "type": "teamMembers",
+            "id": "2045309"
+          }
+        },
+        "phones": {
+          "data": [
+            {
+              "type": "phones",
+              "id": "105625339"
+            }
+          ]
+        },
+        "emails": {
+          "data": [
+            {
+              "type": "emails",
+              "id": "88429448"
+            }
+          ]
+        },
+        "office": {
+          "data": null
+        },
+        "stripeCards": {
+          "links": {
+            "self": "https://secure.simplepractice.com/frontend/clients/106612410/relationships/stripe-cards",
+            "related": "https://secure.simplepractice.com/frontend/clients/106612410/stripe-cards"
+          }
+        },
+        "clientRelationships": {
+          "data": [
+            {
+              "type": "clientRelationships",
+              "id": "66811543"
+            }
+          ]
+        },
+        "insuranceInfos": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": "105625339",
+      "type": "phones",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/phones/105625339"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Mobile",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "number": "6093756850",
+        "leaveTextMessage": null,
+        "leaveVoiceMessage": null
+      }
+    },
+    {
+      "id": "88429448",
+      "type": "emails",
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Work",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "address": "nagpure.r@northeastern.edu",
+        "emailConsentGiven": "true"
+      }
+    },
+    {
+      "id": "1430500203",
+      "type": "appointmentClients",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/appointment-clients/1430500203"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "attendanceStatus": "Show",
+        "billingType": "Self-pay",
+        "clientPaidStatus": 0,
+        "copay": 0.0,
+        "fee": 100.0,
+        "status": "Show",
+        "uninvoicedFee": 100.0,
+        "writeOffClient": 0.0,
+        "managedByManagedBilling": "false",
+        "clientChargeAmount": 100.0,
+        "insuranceCharge": 0.0,
+        "rate": null,
+        "insuranceBalance": 0.0,
+        "insuranceAmountPaid": 0.0,
+        "totalWriteOff": 0.0,
+        "lockedReasons": "[{\"showOnFilterableAction\":\"delete\",\"accessible\":true,\"prefix\":\"A\",\"reason\":\"progress note\",\"text\":\"The clinician who created the progress note must delete it before the client can be\",\"linkTo\":{\"route\":\"appointments.show\",\"models\":[3505428529]}},{\"showOnFilterableAction\":\"all\",\"accessible\":true,\"prefix\":\"A\",\"reason\":\"superbill\",\"text\":\"Someone with billing access must delete the superbill before the client can be\",\"linkTo\":{\"route\":\"calendar.appointments.show.superbill\",\"models\":[3505428529,74445728]}}]",
+        "isBillingLedgerEnabled": "true",
+        "isBillingTimelineEnabled": "true",
+        "automatedBilling": "false",
+        "claimAssistantStatus": null,
+        "claimAssistantProgressNoteStatus": "unlocked",
+        "isCoverageTerminated": "false",
+        "permissions": "{\"billing\":true,\"edit\":true,\"editScheduling\":false,\"editTime\":false,\"editBilling\":false,\"treatment\":true,\"editStatus\":false,\"destroy\":false,\"printSession\":true}"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        },
+        "progressNote": {
+          "data": null
+        },
+        "complexNote": {
+          "data": null
+        },
+        "appointmentCheck": {
+          "data": null
+        },
+        "superbill": {
+          "data": {
+            "type": "superbills",
+            "id": "74445728"
+          }
+        }
+      }
+    },
+    {
+      "id": "66811543",
+      "type": "clientRelationships",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-relationships/66811543"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "relationshipName": "family_member",
+        "reciprocalRelationshipName": "family_member",
+        "emergencyContact": "false",
+        "clientPortalAccess": "false",
+        "billingDelegation": "false",
+        "isHidden": "false",
+        "isPrimary": "false",
+        "phoneReminderType": null,
+        "reminderCanceledAppointmentPhoneType": null,
+        "enableSelfScheduling": "view_and_request",
+        "enableBillingDocuments": "true",
+        "enablePayments": "true",
+        "enableEmailReminders": "false",
+        "enableOutstandingDocumentReminders": "false",
+        "outstandingDocumentRemindersEnabled": "false",
+        "enableSmsOutstandingDocumentReminders": "false",
+        "enableUpcomingAppointmentsReminders": "false",
+        "enableIncompleteDocumentsReminders": "false",
+        "enableCanceledAppointmentReminders": "false",
+        "receiveClientAnnouncements": "true"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        },
+        "relatedClient": {
+          "data": {
+            "type": "clientContacts",
+            "id": "106612411"
+          }
+        }
+      }
+    },
+    {
+      "id": "106612411",
+      "type": "clientContacts",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-contacts/106612411"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "insuranceInfosAttributes": null,
+        "waitlistEntryAttributes": null,
+        "permissions": "{\"edit\":true}",
+        "hashedId": "f59dd35438f8d10c",
+        "name": "Karen Appleseed",
+        "firstName": "Karen",
+        "lastName": "Appleseed",
+        "middleName": null,
+        "initials": "KA",
+        "suffix": null,
+        "nickname": null,
+        "preferredName": "Karen Appleseed",
+        "legalName": "Karen Appleseed",
+        "genderInfo": null,
+        "sex": null,
+        "status": "active",
+        "birthDate": null,
+        "coveragePauseDate": null,
+        "primaryInsuranceInfoUpdatedAfterCoveragePause": "false",
+        "createdAt": "2026-05-05T16:11:26-05:00",
+        "ignoredForMerge": "false",
+        "enableUpcomingAppointmentsReminders": "false",
+        "enableIncompleteDocumentsReminders": "false",
+        "enableCanceledAppointmentReminders": "false",
+        "defaultPhoneNumber": "(310) 555-1212",
+        "defaultEmailAddress": "kappleseed@htn.mmd",
+        "generalNotes": null,
+        "reciprocalClientRelationshipsAttributes": null,
+        "relationshipStatus": null,
+        "employmentStatus": null,
+        "raceEthnicities": [],
+        "raceEthnicityDetails": null,
+        "preferredLanguage": null,
+        "timeZone": "Central Time (US & Canada)"
+      },
+      "relationships": {
+        "clinician": {
+          "data": null
+        }
+      }
+    },
+    {
+      "id": "44188318",
+      "type": "diagnosisTreatmentPlans",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/diagnosis-treatment-plans/44188318"
+      },
+      "attributes": {
+        "templateQuestions": "[]",
+        "userAnswers": "[]",
+        "permissions": "{\"showPartially\":false,\"update\":true,\"destroy\":true,\"treatmentDetails\":true}",
+        "thisType": null,
+        "frequency": null,
+        "notedAt": "2026-05-03T12:59:00-05:00",
+        "hasDetails": "false",
+        "reminderOption": "none",
+        "reminderAfterPeriod": null,
+        "reminderOnDate": null,
+        "structure": "{\"diagnoses\":[{\"code\":\"F41.9\",\"description\":\"Anxiety disorder, unspecified\"},{\"code\":\"F43.22\",\"description\":\"Adjustment disorder with anxiety\"}]}",
+        "problem": null,
+        "goal": null,
+        "formattedGoal": null,
+        "objective": null,
+        "formattedObjective": null,
+        "source": "manual"
+      },
+      "relationships": {
+        "note": {
+          "data": {
+            "type": "notes",
+            "id": "925740417"
+          }
+        },
+        "globalDsmCodes": {
+          "data": [
+            {
+              "type": "globalDsmCodes",
+              "id": "397"
+            },
+            {
+              "type": "globalDsmCodes",
+              "id": "532"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "397",
+      "type": "globalDsmCodes",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/global-dsm-codes/397"
+      },
+      "attributes": {
+        "code": "F41.9",
+        "description": "Anxiety disorder, unspecified",
+        "isDeprecated": "false"
+      }
+    },
+    {
+      "id": "532",
+      "type": "globalDsmCodes",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/global-dsm-codes/532"
+      },
+      "attributes": {
+        "code": "F43.22",
+        "description": "Adjustment disorder with anxiety",
+        "isDeprecated": "false"
+      }
+    },
+    {
+      "id": "334272929",
+      "type": "complexNotes",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/complex-notes/334272929"
+      },
+      "attributes": {
+        "templateQuestions": "[{\"id\":1,\"questionType\":\"SHORT_ANSWER\",\"question\":\"data\",\"formattedQuestion\":null,\"inGroup\":false,\"intakeAnswers\":[{\"id\":1,\"position\":1,\"text\":\"data on jamie app. 1[Insert suggested response] \",\"free_text_type\":\"0\",\"free_text_title\":null,\"prefill_options\":[],\"show_prefill_options\":false}],\"required\":false},{\"id\":2,\"questionType\":\"SHORT_ANSWER\",\"question\":\"subjective\",\"formattedQuestion\":null,\"inGroup\":false,\"intakeAnswers\":[{\"id\":1,\"position\":1,\"text\":\"[Insert suggested response] for subjective\",\"free_text_type\":\"0\",\"free_text_title\":null,\"prefill_options\":[],\"show_prefill_options\":false}],\"required\":false},{\"id\":3,\"questionType\":\"SHORT_ANSWER\",\"question\":\"assessment\",\"formattedQuestion\":null,\"inGroup\":false,\"intakeAnswers\":[{\"id\":1,\"position\":1,\"text\":\"assessment for jamie app 1. [Insert suggested response]\",\"free_text_type\":\"0\",\"free_text_title\":null,\"prefill_options\":[],\"show_prefill_options\":false}],\"required\":false},{\"id\":4,\"questionType\":\"SHORT_ANSWER\",\"question\":\"plan\",\"formattedQuestion\":null,\"inGroup\":false,\"intakeAnswers\":[{\"id\":1,\"position\":1,\"text\":\"plan for app1 [Insert suggested response]\",\"free_text_type\":\"0\",\"free_text_title\":null,\"prefill_options\":[],\"show_prefill_options\":false}],\"required\":false}]",
+        "userAnswers": "[{\"questionId\":1,\"questionType\":\"SHORT_ANSWER\",\"freeTextAnswer\":\"data on jamie app. 1[Insert suggested response] \",\"formattedFreeTextAnswer\":\"<p>data on jamie app. 1[Insert suggested response]</p>\\n\",\"answers\":[]},{\"questionId\":2,\"questionType\":\"SHORT_ANSWER\",\"freeTextAnswer\":\"[Insert suggested response] for subjective\",\"formattedFreeTextAnswer\":\"<p>[Insert suggested response] for subjective</p>\\n\",\"answers\":[]},{\"questionId\":3,\"questionType\":\"SHORT_ANSWER\",\"freeTextAnswer\":\"assessment for jamie app 1. [Insert suggested response]\",\"formattedFreeTextAnswer\":\"<p>assessment for jamie app 1. [Insert suggested response]</p>\\n\",\"answers\":[]},{\"questionId\":4,\"questionType\":\"SHORT_ANSWER\",\"freeTextAnswer\":\"plan for app1 [Insert suggested response]\",\"formattedFreeTextAnswer\":\"<p>plan for app1 [Insert suggested response]</p>\\n\",\"answers\":[]}]"
+      },
+      "relationships": {
+        "intakeQuestionnaire": {
+          "data": {
+            "type": "intakeQuestionnaires",
+            "id": "21117472"
+          }
+        }
+      }
+    },
+    {
+      "id": "21117472",
+      "type": "intakeQuestionnaires",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/intake-questionnaires/21117472"
+      },
+      "attributes": {
+        "name": "DSAP",
+        "preferredName": "Data, Subjective, Assessment, Plan.",
+        "displayName": "Data, Subjective, Assessment, Plan.",
+        "useFor": "Appointment",
+        "templateQuestionsForPreview": null,
+        "intakeQuestionsAttributes": null,
+        "isActive": "true",
+        "isDefault": "false",
+        "isDeleted": "false"
+      }
+    }
+  ]
+}

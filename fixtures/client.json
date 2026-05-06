@@ -1,0 +1,308 @@
+{
+  "data": {
+    "id": "106612410",
+    "type": "clients",
+    "attributes": {
+      "name": "Jamie D. Appleseed",
+      "lastName": "Appleseed",
+      "preferredName": "Jamie D. Appleseed",
+      "permissions": "{\"billings\":true,\"clientFiles\":true,\"coverageReports\":true,\"destroy\":true,\"documentRequests\":true,\"edit\":true,\"editBilling\":true,\"editClinician\":true,\"editDiagnosis\":false,\"insuranceCards\":true,\"insuranceClaims\":true,\"medications\":null,\"messagingWith\":true,\"newChartNote\":true,\"newClientAdminNote\":true,\"newDiagnosisTreatmentPlan\":true,\"newDocument\":true,\"newGoodFaithEstimate\":true,\"nonBillerDocumentRequests\":true,\"show\":true,\"showMeasures\":true,\"superbills\":true,\"treatment\":true,\"editAccess\":true,\"showAccess\":true,\"manageMedications\":null}"
+    },
+    "relationships": {
+      "phones": {
+        "data": [
+          {
+            "type": "phones",
+            "id": "105625339"
+          }
+        ]
+      },
+      "emails": {
+        "data": [
+          {
+            "type": "emails",
+            "id": "88429448"
+          }
+        ]
+      },
+      "addresses": {
+        "data": [
+          {
+            "type": "addresses",
+            "id": "55255320"
+          }
+        ]
+      },
+      "insuranceInfos": {
+        "data": []
+      },
+      "currentInsuranceAuthorization": {
+        "data": null
+      },
+      "billingSettings": {
+        "data": {
+          "type": "clientBillingSettings",
+          "id": "75851574"
+        }
+      },
+      "clientBillingOverview": {
+        "data": {
+          "type": "clientBillingOverviews",
+          "id": "106612410"
+        }
+      },
+      "upcomingAppointments": {
+        "data": [
+          {
+            "type": "appointments",
+            "id": "3505428524"
+          }
+        ]
+      }
+    },
+    "meta": {
+      "upcomingAppointmentsCount": 1
+    }
+  },
+  "included": [
+    {
+      "id": "66811543",
+      "type": "clientRelationships",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-relationships/66811543"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "relationshipName": "family_member",
+        "reciprocalRelationshipName": "family_member",
+        "emergencyContact": "false",
+        "clientPortalAccess": "false",
+        "billingDelegation": "false",
+        "isHidden": "false",
+        "isPrimary": "false",
+        "phoneReminderType": null,
+        "reminderCanceledAppointmentPhoneType": null,
+        "enableSelfScheduling": "view_and_request",
+        "enableBillingDocuments": "true",
+        "enablePayments": "true",
+        "enableEmailReminders": "false",
+        "enableOutstandingDocumentReminders": "false",
+        "outstandingDocumentRemindersEnabled": "false",
+        "enableSmsOutstandingDocumentReminders": "false",
+        "enableUpcomingAppointmentsReminders": "false",
+        "enableIncompleteDocumentsReminders": "false",
+        "enableCanceledAppointmentReminders": "false",
+        "receiveClientAnnouncements": "true"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        },
+        "relatedClient": {
+          "data": {
+            "type": "clientContacts",
+            "id": "106612411"
+          }
+        }
+      }
+    },
+    {
+      "id": "106612411",
+      "type": "clientContacts",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-contacts/106612411"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "insuranceInfosAttributes": null,
+        "waitlistEntryAttributes": null,
+        "permissions": "{\"edit\":true}",
+        "hashedId": "f59dd35438f8d10c",
+        "name": "Karen Appleseed",
+        "firstName": "Karen",
+        "lastName": "Appleseed",
+        "middleName": null,
+        "initials": "KA",
+        "suffix": null,
+        "nickname": null,
+        "preferredName": "Karen Appleseed",
+        "legalName": "Karen Appleseed",
+        "genderInfo": null,
+        "sex": null,
+        "status": "active",
+        "birthDate": null,
+        "coveragePauseDate": null,
+        "primaryInsuranceInfoUpdatedAfterCoveragePause": "false",
+        "createdAt": "2026-05-05T16:11:26-05:00",
+        "ignoredForMerge": "false",
+        "enableUpcomingAppointmentsReminders": "false",
+        "enableIncompleteDocumentsReminders": "false",
+        "enableCanceledAppointmentReminders": "false",
+        "defaultPhoneNumber": "(310) 555-1212",
+        "defaultEmailAddress": "kappleseed@htn.mmd",
+        "generalNotes": null,
+        "reciprocalClientRelationshipsAttributes": null,
+        "relationshipStatus": null,
+        "employmentStatus": null,
+        "raceEthnicities": [],
+        "raceEthnicityDetails": null,
+        "preferredLanguage": null,
+        "timeZone": "Central Time (US & Canada)"
+      },
+      "relationships": {
+        "clinician": {
+          "data": null
+        },
+        "phones": {
+          "data": [
+            {
+              "type": "phones",
+              "id": "105625340"
+            }
+          ]
+        },
+        "emails": {
+          "data": [
+            {
+              "type": "emails",
+              "id": "88429449"
+            }
+          ]
+        },
+        "addresses": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": "105625340",
+      "type": "phones",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/phones/105625340"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Mobile",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "number": "(310) 555-1212",
+        "leaveTextMessage": null,
+        "leaveVoiceMessage": "true"
+      }
+    },
+    {
+      "id": "105625339",
+      "type": "phones",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/phones/105625339"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Mobile",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "number": "6093756850",
+        "leaveTextMessage": null,
+        "leaveVoiceMessage": null
+      }
+    },
+    {
+      "id": "88429449",
+      "type": "emails",
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Work",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "address": "kappleseed@htn.mmd",
+        "emailConsentGiven": "true"
+      }
+    },
+    {
+      "id": "88429448",
+      "type": "emails",
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Work",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "address": "nagpure.r@northeastern.edu",
+        "emailConsentGiven": "true"
+      }
+    },
+    {
+      "id": "55255320",
+      "type": "addresses",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/addresses/55255320"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "street": "123 Main Street",
+        "state": "CA",
+        "city": "Anytown",
+        "zip": "12345",
+        "color": null,
+        "locationType": "physical",
+        "billingOnly": "false",
+        "billingStatus": "not_defined",
+        "displayName": "123 Main Street, Anytown, CA, 12345",
+        "isDeleted": "false",
+        "name": null,
+        "insurancePlaceOfService": "11",
+        "defaultTelehealthModifier": null,
+        "isPublic": null,
+        "geolocation": null
+      }
+    },
+    {
+      "id": "75851574",
+      "type": "clientBillingSettings",
+      "attributes": {
+        "autopayCadence": "daily"
+      }
+    },
+    {
+      "id": "106612410",
+      "type": "clientBillingOverviews",
+      "attributes": {
+        "balanceDue": 200.0,
+        "unbilledAmount": 0.0,
+        "amountReceived": 100.0,
+        "balanceInsurance": null,
+        "amountReceivedInsurance": null,
+        "firstAppointmentStartTime": "2026-05-03T13:00:00-05:00",
+        "uninvoicedAppointmentsCount": 0,
+        "unpaidInvoicesAmount": 300.0,
+        "allocatableInvoicesCount": 3,
+        "unallocatedPaymentsCount": 1,
+        "availableCredit": 100.0,
+        "sumInvoiceAmounts": 300.0,
+        "sumPayments": 100.0,
+        "sumUnallocatedAdjustmentAmounts": 0.0,
+        "sumUnallocatedCreditInvoiceAmounts": 0.0,
+        "sumUnallocatedPayments": 100.0,
+        "netUnallocatedPayables": 100.0,
+        "countUnpaidInvoices": 3.0,
+        "outstandingCredit": -100.0,
+        "outstandingDebit": 300.0
+      }
+    },
+    {
+      "id": "3505428524",
+      "type": "appointments",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/appointments/3505428524"
+      },
+      "attributes": {
+        "startTime": "2026-05-06T14:00:00-05:00",
+        "endTime": "2026-05-06T15:00:00-05:00",
+        "fullDay": "false",
+        "attendanceStatus": "Show"
+      },
+      "meta": {
+        "hasMemo": false
+      }
+    }
+  ]
+}

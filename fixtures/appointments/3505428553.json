@@ -1,0 +1,97 @@
+{
+  "data": {
+    "type": "appointments",
+    "id": "3505428553",
+    "attributes": {
+      "cursorId": "eyJfcmFpbHMiOnsiZGF0YSI6ImdpZDovL3NpbXBsZS1wcmFjdGljZS9BcHBvaW50bWVudC8zNTA1NDI4NTUzIiwiZXhwIjoiMjAyNi0wNi0wNlQxNjoxMzowNS4xNjlaIiwicHVyIjoiZGVmYXVsdCJ9fQ==--b1ef0c29e08d934cccfc0dde2ffb1659e90981d7",
+      "startTime": "2026-05-05T16:00:00-05:00",
+      "endTime": "2026-05-05T17:00:00-05:00",
+      "fullDay": "false",
+      "attendanceStatus": "Show",
+      "cptCodes": [
+        {
+          "code": "90834",
+          "ratePerUnit": "100.0",
+          "rate": null,
+          "description": "Psychotherapy, 45 min",
+          "numberOfUnits": 1,
+          "unitBillingEnabled": false,
+          "benefitChecksSupported": false,
+          "hashedId": "41a0d9b0",
+          "modifierOne": null,
+          "modifierTwo": null,
+          "modifierThree": null,
+          "modifierFour": null
+        }
+      ],
+      "permissions": "{\"billing\":true,\"showDetails\":true,\"edit\":true,\"editScheduling\":true,\"editDetails\":false,\"editTime\":true,\"editStatus\":false,\"editTeamMember\":true,\"treatment\":true,\"destroy\":false,\"showOnCalendar\":true,\"treatmentProgress\":true,\"createTreatmentProgress\":true,\"adminStaffDocsAccess\":false,\"showNotes\":true,\"noteTaker\":false,\"viewDraftAiNote\":false,\"postSessionSummary\":false}",
+      "rankNum": 3
+    },
+    "relationships": {
+      "clinician": {
+        "data": {
+          "type": "teamMembers",
+          "id": "2045309"
+        }
+      },
+      "progressNote": {
+        "data": {
+          "type": "notes",
+          "id": "925826179"
+        }
+      },
+      "globalMonarchChannel": {
+        "data": null
+      },
+      "appointmentMemo": {
+        "data": null
+      },
+      "overviewDocuments": {
+        "data": []
+      },
+      "psychotherapyNote": {
+        "data": null
+      }
+    },
+    "_synthesized_from": "overview-items"
+  },
+  "included": [
+    {
+      "id": "925826179",
+      "type": "notes",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/notes/925826179"
+      },
+      "attributes": {
+        "cursorId": "eyJfcmFpbHMiOnsiZGF0YSI6ImdpZDovL3NpbXBsZS1wcmFjdGljZS9Ob3RlLzkyNTgyNjE3OSIsImV4cCI6IjIwMjYtMDYtMDZUMTY6MTM6MDUuMTc5WiIsInB1ciI6ImRlZmF1bHQifX0=--504916d8fddf84e93ff650dd44b70ce33c1486df",
+        "thisType": "Progress",
+        "title": "DAP Note",
+        "text": "### Data\n\nData\n\nClient was alert and oriented x3. His mood and affect were labile throughout the session. Jamie reported feeling more anxious than usual over the past week and noted two incidents of consuming 7 to 8 beers in a single evening. The client continues to experience mild morning tremors when alcohol intake is reduced. Jamie disclosed that their partner expressed frustration about the recent increase in drinking, adding to the client’s sense of guilt and isolation.\n\n### Assessment and Response\n\nAssessment\n\nJamie presents with moderate Alcohol Use Disorder and Generalized Anxiety Disorder that are closely intertwined; anxiety triggers craving, and alcohol use temporarily suppresses anxiety while deepening long-term dysregulation. The client demonstrates good insight but ambivalence regarding ability to tolerate anxiety without substance use. Risk for escalating withdrawal symptoms (currently mild) warrants close monitoring. Motivation for change remains internally driven.\n\n### Plan\n\nPlan\n\nContinue weekly individual therapy. Introduce psychoeducation on the anxiety-alcohol feedback loop. Explore coping strategies for managing rebound anxiety without alcohol (e.g., diaphragmatic breathing, grounding techniques). Consult regarding referral to IOP (Intensive Outpatient Program, ASAM Level 2.1) if substance use continues to escalate. Discuss partner communication strategies. Return for next session on 05/06/2026.",
+        "formattedText": "<h3 id=\"data\">Data</h3>\n\n<p>Data</p>\n\n<p>Client was alert and oriented x3. His mood and affect were labile throughout the session. Jamie reported feeling more anxious than usual over the past week and noted two incidents of consuming 7 to 8 beers in a single evening. The client continues to experience mild morning tremors when alcohol intake is reduced. Jamie disclosed that their partner expressed frustration about the recent increase in drinking, adding to the client’s sense of guilt and isolation.</p>\n\n<h3 id=\"assessment-and-response\">Assessment and Response</h3>\n\n<p>Assessment</p>\n\n<p>Jamie presents with moderate Alcohol Use Disorder and Generalized Anxiety Disorder that are closely intertwined; anxiety triggers craving, and alcohol use temporarily suppresses anxiety while deepening long-term dysregulation. The client demonstrates good insight but ambivalence regarding ability to tolerate anxiety without substance use. Risk for escalating withdrawal symptoms (currently mild) warrants close monitoring. Motivation for change remains internally driven.</p>\n\n<h3 id=\"plan\">Plan</h3>\n\n<p>Plan</p>\n\n<p>Continue weekly individual therapy. Introduce psychoeducation on the anxiety-alcohol feedback loop. Explore coping strategies for managing rebound anxiety without alcohol (e.g., diaphragmatic breathing, grounding techniques). Consult regarding referral to IOP (Intensive Outpatient Program, ASAM Level 2.1) if substance use continues to escalate. Discuss partner communication strategies. Return for next session on 05/06/2026.</p>\n",
+        "notedAt": "2026-05-05T17:39:18-05:00",
+        "lockedAt": null,
+        "createdAt": "2026-05-05T17:39:18-05:00",
+        "updatedAt": "2026-05-05T21:01:47-05:00",
+        "updatedBy": "Rohan Nagpure",
+        "isMeasure": "false",
+        "managedBillingClaimResult": "hidden",
+        "contentFingerprint": "86170b9568a6b9188bc31056ab70d55b1e69d44835b40bcc97e49571fa3a60bf",
+        "permissions": "{\"show\":true,\"edit\":true,\"destroy\":true}"
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "type": "teamMembers",
+            "id": "2045309"
+          }
+        },
+        "notable": {
+          "data": {
+            "type": "appointments",
+            "id": "3505428553"
+          }
+        }
+      }
+    }
+  ]
+}

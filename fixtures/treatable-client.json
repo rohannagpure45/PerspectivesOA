@@ -1,0 +1,548 @@
+{
+  "data": {
+    "id": "106612410",
+    "type": "clients",
+    "attributes": {
+      "persistenceToken": null,
+      "permissions": "{\"billings\":true,\"clientFiles\":true,\"coverageReports\":true,\"destroy\":true,\"documentRequests\":true,\"edit\":true,\"editBilling\":true,\"editClinician\":true,\"editDiagnosis\":false,\"insuranceCards\":true,\"insuranceClaims\":true,\"medications\":null,\"messagingWith\":true,\"newChartNote\":true,\"newClientAdminNote\":true,\"newDiagnosisTreatmentPlan\":true,\"newDocument\":true,\"newGoodFaithEstimate\":true,\"nonBillerDocumentRequests\":true,\"show\":true,\"showMeasures\":true,\"superbills\":true,\"treatment\":true,\"editAccess\":true,\"showAccess\":true,\"manageMedications\":null}",
+      "hashedId": "0c39dadff6972e0f",
+      "name": "Jamie D. Appleseed",
+      "firstName": "Jamie",
+      "lastName": "Appleseed",
+      "middleName": "Demo",
+      "initials": "JA",
+      "suffix": null,
+      "nickname": null,
+      "preferredName": "Jamie D. Appleseed",
+      "legalName": "Jamie Appleseed",
+      "genderInfo": null,
+      "sex": null,
+      "status": "active",
+      "birthDate": "2025-10-31",
+      "coveragePauseDate": null,
+      "primaryInsuranceInfoUpdatedAfterCoveragePause": "false",
+      "createdAt": "2026-05-05T16:11:26-05:00",
+      "ignoredForMerge": "false",
+      "enableUpcomingAppointmentsReminders": "false",
+      "enableIncompleteDocumentsReminders": "false",
+      "enableCanceledAppointmentReminders": "false",
+      "defaultPhoneNumber": "6093756850",
+      "defaultEmailAddress": "nagpure.r@northeastern.edu",
+      "generalNotes": null,
+      "reminderEmailAttributes": null,
+      "reminderPhoneAttributes": null,
+      "documentReminderPhoneAttributes": null,
+      "documentReminderEmailAttributes": null,
+      "reminderCanceledAppointmentEmailAttributes": null,
+      "reminderCanceledAppointmentPhoneAttributes": null,
+      "clientRelationshipsAttributes": null,
+      "billingSettingsAttributes": null,
+      "insuranceAuthorizationsAttributes": null,
+      "currentInsuranceAuthorizationAttributes": null,
+      "cptCodeRatesAttributes": null,
+      "insuranceClaimFieldsAttributes": null,
+      "inActiveTreatment": "true",
+      "secondaryClinicianIds": "[]",
+      "billingType": "Self-pay",
+      "billingTypeGroupAppt": "Self-pay",
+      "insuranceBillingSubtype": null,
+      "documentGenerateStatements": "false",
+      "documentGenerateSuperbills": "false",
+      "dateFirstVisit": "2026-05-06T00:00:00-05:00",
+      "grantedUsers": "[2045309]",
+      "timeZone": "Central Time (US & Canada)",
+      "missingInsuranceData": "{}",
+      "unbilledClinicianIds": "[]",
+      "enhancedDataProtection": "false",
+      "revokedAdminIds": "[]",
+      "measuredScores": "[{\"noteId\":115732113,\"title\":\"GAD-7\",\"score\":14,\"maxScore\":21,\"scoringRubric\":\"Scores from 10–14 indicate <b>moderate anxiety</b>.\",\"severityState\":\"Moderate\",\"severityColor\":\"#ffc117\",\"scoringSeverity\":[{\"min\":0,\"max\":4,\"state\":\"None–minimal\",\"color\":\"#5ac8fa\",\"info\":\"Scores from 0–4 indicate <b>minimal or no anxiety</b>.\"},{\"min\":5,\"max\":9,\"state\":\"Mild\",\"color\":\"#14bf71\",\"info\":\"Scores from 5–9 indicate <b>mild anxiety</b>.\"},{\"min\":10,\"max\":14,\"state\":\"Moderate\",\"color\":\"#ffc117\",\"info\":\"Scores from 10–14 indicate <b>moderate anxiety</b>.\"},{\"min\":15,\"max\":21,\"state\":\"Severe\",\"color\":\"#ee6145\",\"info\":\"Scores from 15–21 indicate <b>severe anxiety</b>.\"}],\"questionnaireType\":\"Gad\",\"createdAt\":\"2026-05-07T13:00:00-05:00\"}]",
+      "hasPendingInsuranceInfoRequest": "false",
+      "displayAiIntakeSummary": "false",
+      "hasPendingClinicianInsuranceInfoReview": "false",
+      "viaClinicianReferral": null,
+      "referringUserFirstName": null,
+      "referringUserLastName": null,
+      "enrollmentStatusForPayer": null,
+      "contactMethod": null,
+      "sendScheduleLinkVisible": "true",
+      "isAutopayEnabled": "false",
+      "billingZipcode": "12345",
+      "defaultPaymentMethod": "Cash",
+      "isMinor": "false",
+      "relationshipStatus": null,
+      "employmentStatus": null,
+      "raceEthnicities": [],
+      "raceEthnicityDetails": null,
+      "preferredLanguage": null,
+      "enableEmailReminders": "false",
+      "enableOutstandingDocumentReminders": "false",
+      "outstandingDocumentRemindersEnabled": "false",
+      "enableSmsvoiceReminders": "0",
+      "reminderCanceledAppointmentPhoneType": null,
+      "enableSmsOutstandingDocumentReminders": "false"
+    },
+    "relationships": {
+      "clientAccess": {
+        "data": null
+      },
+      "clinician": {
+        "data": {
+          "type": "teamMembers",
+          "id": "2045309"
+        }
+      },
+      "globalMonarchChannel": {
+        "data": null
+      },
+      "waitlistEntry": {
+        "data": null
+      },
+      "clientRelationships": {
+        "data": [
+          {
+            "type": "clientRelationships",
+            "id": "66811543"
+          }
+        ]
+      },
+      "reciprocalClientRelationships": {
+        "data": [
+          {
+            "type": "clientRelationships",
+            "id": "66811544"
+          }
+        ]
+      },
+      "phones": {
+        "data": [
+          {
+            "type": "phones",
+            "id": "105625339"
+          }
+        ]
+      },
+      "emails": {
+        "data": [
+          {
+            "type": "emails",
+            "id": "88429448"
+          }
+        ]
+      },
+      "addresses": {
+        "data": [
+          {
+            "type": "addresses",
+            "id": "55255320"
+          }
+        ]
+      },
+      "insuranceInfos": {
+        "data": []
+      },
+      "office": {
+        "data": null
+      },
+      "clientAdminNote": {
+        "data": null
+      },
+      "autopayReminder": {
+        "data": null
+      },
+      "autopayInsuranceReminder": {
+        "data": null
+      },
+      "previousAppointment": {
+        "data": {
+          "type": "appointments",
+          "id": "3505428553"
+        }
+      },
+      "upcomingAppointments": {
+        "data": [
+          {
+            "type": "appointments",
+            "id": "3505428524"
+          }
+        ]
+      },
+      "clientDocumentRequests": {
+        "data": [
+          {
+            "type": "clientQuestionnaireRequests",
+            "id": "473981195"
+          },
+          {
+            "type": "clientQuestionnaireRequests",
+            "id": "473981197"
+          }
+        ]
+      },
+      "clientDocumentRequestSchedules": {
+        "data": []
+      },
+      "viewableDocuments": {
+        "data": []
+      },
+      "pendingAppointmentConfirmations": {
+        "data": []
+      }
+    },
+    "meta": {
+      "upcomingAppointmentsCount": 1
+    }
+  },
+  "included": [
+    {
+      "id": "66811543",
+      "type": "clientRelationships",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-relationships/66811543"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "relationshipName": "family_member",
+        "reciprocalRelationshipName": "family_member",
+        "emergencyContact": "false",
+        "clientPortalAccess": "false",
+        "billingDelegation": "false",
+        "isHidden": "false",
+        "isPrimary": "false",
+        "phoneReminderType": null,
+        "reminderCanceledAppointmentPhoneType": null,
+        "enableSelfScheduling": "view_and_request",
+        "enableBillingDocuments": "true",
+        "enablePayments": "true",
+        "enableEmailReminders": "false",
+        "enableOutstandingDocumentReminders": "false",
+        "outstandingDocumentRemindersEnabled": "false",
+        "enableSmsOutstandingDocumentReminders": "false",
+        "enableUpcomingAppointmentsReminders": "false",
+        "enableIncompleteDocumentsReminders": "false",
+        "enableCanceledAppointmentReminders": "false",
+        "receiveClientAnnouncements": "true"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        },
+        "relatedClient": {
+          "data": {
+            "type": "clientContacts",
+            "id": "106612411"
+          }
+        },
+        "reminderPhone": {
+          "data": null
+        },
+        "documentReminderPhone": {
+          "data": null
+        },
+        "documentReminderEmail": {
+          "data": null
+        }
+      }
+    },
+    {
+      "id": "66811544",
+      "type": "clientRelationships",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-relationships/66811544"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "relationshipName": "family_member",
+        "reciprocalRelationshipName": "family_member",
+        "emergencyContact": "false",
+        "clientPortalAccess": "false",
+        "billingDelegation": "false",
+        "isHidden": "true",
+        "isPrimary": "false",
+        "phoneReminderType": null,
+        "reminderCanceledAppointmentPhoneType": null,
+        "enableSelfScheduling": "view_and_request",
+        "enableBillingDocuments": "true",
+        "enablePayments": "true",
+        "enableEmailReminders": "false",
+        "enableOutstandingDocumentReminders": "false",
+        "outstandingDocumentRemindersEnabled": "false",
+        "enableSmsOutstandingDocumentReminders": "false",
+        "enableUpcomingAppointmentsReminders": "false",
+        "enableIncompleteDocumentsReminders": "false",
+        "enableCanceledAppointmentReminders": "false",
+        "receiveClientAnnouncements": "true"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "type": "clientContacts",
+            "id": "106612411"
+          }
+        },
+        "relatedClient": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        }
+      }
+    },
+    {
+      "id": "106612411",
+      "type": "clientContacts",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-contacts/106612411"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "insuranceInfosAttributes": null,
+        "waitlistEntryAttributes": null,
+        "permissions": "{\"edit\":true}",
+        "hashedId": "f59dd35438f8d10c",
+        "name": "Karen Appleseed",
+        "firstName": "Karen",
+        "lastName": "Appleseed",
+        "middleName": null,
+        "initials": "KA",
+        "suffix": null,
+        "nickname": null,
+        "preferredName": "Karen Appleseed",
+        "legalName": "Karen Appleseed",
+        "genderInfo": null,
+        "sex": null,
+        "status": "active",
+        "birthDate": null,
+        "coveragePauseDate": null,
+        "primaryInsuranceInfoUpdatedAfterCoveragePause": "false",
+        "createdAt": "2026-05-05T16:11:26-05:00",
+        "ignoredForMerge": "false",
+        "enableUpcomingAppointmentsReminders": "false",
+        "enableIncompleteDocumentsReminders": "false",
+        "enableCanceledAppointmentReminders": "false",
+        "defaultPhoneNumber": "(310) 555-1212",
+        "defaultEmailAddress": "kappleseed@htn.mmd",
+        "generalNotes": null,
+        "reciprocalClientRelationshipsAttributes": null,
+        "relationshipStatus": null,
+        "employmentStatus": null,
+        "raceEthnicities": [],
+        "raceEthnicityDetails": null,
+        "preferredLanguage": null,
+        "timeZone": "Central Time (US & Canada)"
+      },
+      "relationships": {
+        "clientAccess": {
+          "data": null
+        },
+        "clientPortalSettings": {
+          "data": null
+        },
+        "clinician": {
+          "data": null
+        },
+        "phones": {
+          "data": [
+            {
+              "type": "phones",
+              "id": "105625340"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "105625340",
+      "type": "phones",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/phones/105625340"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Mobile",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "number": "(310) 555-1212",
+        "leaveTextMessage": null,
+        "leaveVoiceMessage": "true"
+      }
+    },
+    {
+      "id": "105625339",
+      "type": "phones",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/phones/105625339"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Mobile",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "number": "6093756850",
+        "leaveTextMessage": null,
+        "leaveVoiceMessage": null
+      }
+    },
+    {
+      "id": "88429448",
+      "type": "emails",
+      "attributes": {
+        "persistenceToken": null,
+        "thisType": "Work",
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "address": "nagpure.r@northeastern.edu",
+        "emailConsentGiven": "true"
+      }
+    },
+    {
+      "id": "55255320",
+      "type": "addresses",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/addresses/55255320"
+      },
+      "attributes": {
+        "persistenceToken": null,
+        "updatedAt": "2026-05-05T16:11:26-05:00",
+        "street": "123 Main Street",
+        "state": "CA",
+        "city": "Anytown",
+        "zip": "12345",
+        "color": null,
+        "locationType": "physical",
+        "billingOnly": "false",
+        "billingStatus": "not_defined",
+        "displayName": "123 Main Street, Anytown, CA, 12345",
+        "isDeleted": "false",
+        "name": null,
+        "insurancePlaceOfService": "11",
+        "defaultTelehealthModifier": null,
+        "isPublic": null,
+        "geolocation": null
+      }
+    },
+    {
+      "id": "3505428553",
+      "type": "appointments",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/appointments/3505428553"
+      },
+      "attributes": {
+        "startTime": "2026-05-05T16:00:00-05:00",
+        "attendanceStatus": "Show",
+        "clientConfirmationStatus": null
+      },
+      "relationships": {
+        "office": {
+          "data": null
+        },
+        "recurringAppointment": {
+          "data": null
+        }
+      },
+      "meta": {
+        "hasMemo": false
+      }
+    },
+    {
+      "id": "3505428524",
+      "type": "appointments",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/appointments/3505428524"
+      },
+      "attributes": {
+        "startTime": "2026-05-06T14:00:00-05:00",
+        "attendanceStatus": "Show",
+        "clientConfirmationStatus": null
+      },
+      "relationships": {
+        "office": {
+          "data": null
+        },
+        "recurringAppointment": {
+          "data": null
+        }
+      },
+      "meta": {
+        "hasMemo": false
+      }
+    },
+    {
+      "id": "1430500199",
+      "type": "appointmentClients",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/appointment-clients/1430500199"
+      },
+      "attributes": {
+        "attendanceStatus": "Show"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        }
+      }
+    },
+    {
+      "id": "473981195",
+      "type": "clientQuestionnaireRequests",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-questionnaire-requests/473981195"
+      },
+      "attributes": {
+        "documentName": "GAD-7",
+        "status": "completed",
+        "createdAt": "2026-05-05T16:11:27-05:00",
+        "updatedAt": "2026-05-05T16:11:27-05:00",
+        "requestedObjectId": 21116592,
+        "recipientName": "Jamie D. Appleseed",
+        "isMeasure": true,
+        "deliverableId": 115732111,
+        "useFor": "Measures",
+        "preferredName": "GAD-7",
+        "mixpanelDocumentName": "scored_gad-7",
+        "administratorName": null,
+        "tooltip": null
+      },
+      "relationships": {
+        "recipient": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        }
+      }
+    },
+    {
+      "id": "473981197",
+      "type": "clientQuestionnaireRequests",
+      "links": {
+        "self": "https://secure.simplepractice.com/frontend/client-questionnaire-requests/473981197"
+      },
+      "attributes": {
+        "documentName": "GAD-7",
+        "status": "completed",
+        "createdAt": "2026-05-05T16:11:27-05:00",
+        "updatedAt": "2026-05-05T16:11:27-05:00",
+        "requestedObjectId": 21116592,
+        "recipientName": "Jamie D. Appleseed",
+        "isMeasure": true,
+        "deliverableId": 115732113,
+        "useFor": "Measures",
+        "preferredName": "GAD-7",
+        "mixpanelDocumentName": "scored_gad-7",
+        "administratorName": null,
+        "tooltip": null
+      },
+      "relationships": {
+        "recipient": {
+          "data": {
+            "type": "clients",
+            "id": "106612410"
+          }
+        }
+      }
+    }
+  ]
+}
